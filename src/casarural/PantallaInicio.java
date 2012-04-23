@@ -443,6 +443,12 @@ public class PantallaInicio extends JFrame {
 	private JButton getBtnServRecogida() {
 		if (btnServRecogida == null) {
 			btnServRecogida = new JButton("Crear Servicio Recogida");
+			btnServRecogida.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ServicioRecogida iuServicioRecogida = new ServicioRecogida();
+					iuServicioRecogida.crearServicio();
+				}
+			});
 		}
 		return btnServRecogida;
 	}
