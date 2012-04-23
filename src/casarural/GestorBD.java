@@ -682,7 +682,7 @@ public final class GestorBD {
 			throw new SQLException();
 		}
 	}
-
+/*
 	public List<Servicio> getServicios() {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		
@@ -709,7 +709,13 @@ public final class GestorBD {
 		
 		return servicios;
 	}
+*/
 	
+	/**
+	 * Obtiene los identificadores de todos los recorridos almacenados
+	 *
+	 * @return lista con los identificadores de todos los recorridos disponibles
+	 */
 	public List<Recorrido> getRecorridos() {
 		List<Recorrido> recorridos = new ArrayList<Recorrido>();
 		
@@ -731,6 +737,11 @@ public final class GestorBD {
 		return recorridos;
 	}
 
+	/**
+	 * Obtiene todos los lugares de recogida almacenados
+	 *
+	 * @return lista con todos los lugares de recogida almacenados
+	 */
 	public List<Recogida> getRecogidas() {
 		List<Recogida> recogidas = new ArrayList<Recogida>();
 		
@@ -754,6 +765,13 @@ public final class GestorBD {
 		return recogidas;
 	}
 
+	/**
+	 * Crea un nuevo servicio
+	 *
+	 * @param servicio nuevo servicio a insertar
+	 * @return true si se ha insertado el servicio, false en otro caso
+	 * throws SQLException
+	 */
 	public boolean crearServicio(Servicio miServicio, int idRecogida,
 			int idRecorrido) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("INSERT INTO Servicio (Fecha, NumRecogida, NumPlazas, "
