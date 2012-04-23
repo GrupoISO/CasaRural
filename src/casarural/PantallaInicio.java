@@ -424,6 +424,12 @@ public class PantallaInicio extends JFrame {
 	private JButton getBtnCrearRecorrido() {
 		if (btnCrearRecorrido == null) {
 			btnCrearRecorrido = new JButton("Crear Recorrido");
+			btnCrearRecorrido.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IURecorrido recorrido = new IURecorrido();
+				    recorrido.crearRecorrido();
+				}
+			});
 		}
 		return btnCrearRecorrido;
 	}
