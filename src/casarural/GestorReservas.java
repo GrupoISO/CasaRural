@@ -1,7 +1,6 @@
 package casarural;
 
 import java.util.*;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.io.*;
 import java.rmi.*;

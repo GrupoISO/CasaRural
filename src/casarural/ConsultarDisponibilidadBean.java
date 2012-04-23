@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 import java.util.Vector;
-import java.lang.*;
 
 public class ConsultarDisponibilidadBean {
 	InterfazFachada logNeg;

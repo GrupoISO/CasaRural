@@ -3,10 +3,7 @@ package casarural;
 import java.rmi.*;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Vector;
-import java.util.Enumeration;
 
 public final class GestorOfertas {
 	GestorBD gbd;

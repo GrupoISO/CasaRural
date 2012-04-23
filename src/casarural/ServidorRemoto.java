@@ -1,7 +1,6 @@
 package casarural;
 
 import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
 
   /**Activa el servidor remoto
   *@param Ninguno

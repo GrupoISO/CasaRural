@@ -1,7 +1,6 @@
 package casarural;
 
 import java.util.Vector;
-import java.sql.Date;
 import java.util.Enumeration;
 import java.io.*;
 

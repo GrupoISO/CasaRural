@@ -1,11 +1,9 @@
 package casarural;
 import javax.swing.JFrame;
 import java.awt.Dimension;
-import javax.swing.JTable;
 import java.awt.Rectangle;
 import javax.swing.table.TableColumnModel;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

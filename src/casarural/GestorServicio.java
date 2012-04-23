@@ -2,7 +2,6 @@ package casarural;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.sql.Date;
 
 
 public class GestorServicio {

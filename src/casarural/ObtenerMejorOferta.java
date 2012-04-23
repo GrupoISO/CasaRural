@@ -1,10 +1,5 @@
 package casarural;
 import javax.swing.JApplet;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
 import javax.swing.JTextField;
@@ -15,8 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.*;
 
-import java.sql.*;
-import java.sql.Date;
 public class ObtenerMejorOferta extends JApplet 
 {
   private JLabel jLabel1 = new JLabel();

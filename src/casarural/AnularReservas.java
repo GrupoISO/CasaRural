@@ -1,47 +1,26 @@
 package casarural;
 
-import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Rectangle;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.rmi.RemoteException;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.StringTokenizer;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JCalendar;
 
-import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 
-import javax.swing.JFrame;
-
-import com.toedter.calendar.JCalendar;
-
-import java.awt.Dimension;
-import java.util.Calendar;
-import java.awt.Rectangle;
 import java.awt.Font;
 
 /** @startuml

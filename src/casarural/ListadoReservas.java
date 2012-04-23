@@ -5,14 +5,8 @@ package casarural;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JViewport;
-import javax.swing.SwingUtilities;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import java.awt.GraphicsConfiguration;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
@@ -25,9 +19,7 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 import javax.swing.JScrollPane;
-import java.awt.Rectangle;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 
 public class ListadoReservas extends JFrame {

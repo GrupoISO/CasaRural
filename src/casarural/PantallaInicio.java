@@ -1,6 +1,5 @@
 package casarural;
 
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.BoxLayout;
@@ -10,9 +9,7 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Dimension;
 import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

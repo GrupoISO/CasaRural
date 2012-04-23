@@ -3,7 +3,6 @@
  */
 package casarural;
 import java.util.List;
-import java.rmi.*;
 
 /**
  * @author Grupo: Ander, Alberto, Gorka, Jon

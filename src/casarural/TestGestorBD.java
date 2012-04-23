@@ -3,14 +3,9 @@
  */
 package casarural;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.GregorianCalendar;
 import java.util.Vector;
-import java.sql.Date;
 
 import junit.framework.TestCase;
 
