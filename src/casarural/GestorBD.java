@@ -754,17 +754,16 @@ public final class GestorBD {
 		return recogidas;
 	}
 
-	public boolean crearServicio(Servicio miServicio, int idRecogida,
-			int idRecorrido) throws SQLException {
+	public boolean crearServicio(Servicio servicio) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("INSERT INTO Servicio (Fecha, NumRecogida, NumPlazas, "
 				+"Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
 		
-		prstd.setDate(1, miServicio.getFecha());
-		prstd.setInt(2, idRecogida);
-		prstd.setInt(3, miServicio.getNumPlazas());
-		prstd.setFloat(4, miServicio.getPrecio());
+		prstd.setDate(1, servicio.getFecha());
+		prstd.setInt(2, servicio.getNumRecogida());
+		prstd.setInt(3, servicio.getNumPlazas());
+		prstd.setFloat(4, servicio.getPrecio());
 		prstd.setInt(5, 0);
-		prstd.setInt(6, idRecorrido);
+		prstd.setInt(6, servicio.getNumRecorrido());
 		
 		int result = prstd.executeUpdate();
 		
