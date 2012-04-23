@@ -51,14 +51,11 @@ public class GestorRecorrido {
 		}catch(Exception e){
 			System.out.println("Error asignando recorrido:" + e.getMessage());
 		}
-		switch (estado){
-		case 1:
+		if (estado > 0){
 			return true;
-		case 0:
+		}else{
 			return false;
-		default:
-			return false;
-		}		
+		}
 	}
 	
 	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
