@@ -660,6 +660,7 @@ public final class GestorBD {
 	 * @param idServicio número identificador del servicio de recogida a contratar
 	 * @param numPlazas número de plazas a reservar en el servicio de recogida
 	 * @return void
+	 * @throws SQLException
 	 */
 	public void transaccionDeReserva(List<Reserva> reservasTotales, int numReserva, String numTfnoReserva, float precioTotal, int idServicio, int numPlazas) throws SQLException {
 		try {
@@ -770,13 +771,13 @@ public final class GestorBD {
 	 *
 	 * @param servicio nuevo servicio a insertar
 	 * @return true si se ha insertado el servicio, false en otro caso
-	 * throws SQLException
+	 * @throws SQLException
 	 */
 	public boolean crearServicio(Servicio servicio) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("INSERT INTO Servicio (Fecha, NumRecogida, NumPlazas, "
-				+"Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
+				+ "Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
 		
-		prstd.setDate(1, servicio.getFecha());
+		prstd.setString(1, "\"" + servicio.getFecha() + " " + servicio.getHora() + "\"");
 		prstd.setInt(2, servicio.getNumRecogida());
 		prstd.setInt(3, servicio.getNumPlazas());
 		prstd.setFloat(4, servicio.getPrecio());
