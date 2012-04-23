@@ -35,14 +35,12 @@ public class GestorServicio {
 	
 	/**Crea un Servicio asignandolo a un recorrido
 	 * 
-	 * @param miServicio Toma como entrada la clase Servicio
-	 * @param idRecogida Código de la Recogida asignada
-	 * @param idRecorrido Código de Recorrido al que se le asignara este servicio
+	 * @param servicio Toma como entrada la clase Servicio
 	 * @return confirmación true/false
 	 */
-	public boolean crearServicio(Servicio miServicio, int idRecogida, int idRecorrido) {
+	public boolean crearServicio(Servicio servicio) {
 		try {
-			return gbd.crearServicio(miServicio, idRecogida, idRecorrido);
+			return gbd.crearServicio(servicio);
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return false;

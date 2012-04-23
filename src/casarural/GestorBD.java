@@ -660,6 +660,7 @@ public final class GestorBD {
 	 * @param idServicio número identificador del servicio de recogida a contratar
 	 * @param numPlazas número de plazas a reservar en el servicio de recogida
 	 * @return void
+	 * @throws SQLException
 	 */
 	public void transaccionDeReserva(List<Reserva> reservasTotales, int numReserva, String numTfnoReserva, float precioTotal, int idServicio, int numPlazas) throws SQLException {
 		try {
@@ -682,7 +683,7 @@ public final class GestorBD {
 			throw new SQLException();
 		}
 	}
-
+/*
 	public List<Servicio> getServicios() {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		
@@ -709,7 +710,13 @@ public final class GestorBD {
 		
 		return servicios;
 	}
+*/
 	
+	/**
+	 * Obtiene los identificadores de todos los recorridos almacenados
+	 *
+	 * @return lista con los identificadores de todos los recorridos disponibles
+	 */
 	public List<Recorrido> getRecorridos() {
 		List<Recorrido> recorridos = new ArrayList<Recorrido>();
 		
@@ -731,6 +738,11 @@ public final class GestorBD {
 		return recorridos;
 	}
 
+	/**
+	 * Obtiene todos los lugares de recogida almacenados
+	 *
+	 * @return lista con todos los lugares de recogida almacenados
+	 */
 	public List<Recogida> getRecogidas() {
 		List<Recogida> recogidas = new ArrayList<Recogida>();
 		
@@ -754,17 +766,23 @@ public final class GestorBD {
 		return recogidas;
 	}
 
-	public boolean crearServicio(Servicio miServicio, int idRecogida,
-			int idRecorrido) throws SQLException {
+	/**
+	 * Crea un nuevo servicio
+	 *
+	 * @param servicio nuevo servicio a insertar
+	 * @return true si se ha insertado el servicio, false en otro caso
+	 * @throws SQLException
+	 */
+	public boolean crearServicio(Servicio servicio) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("INSERT INTO Servicio (Fecha, NumRecogida, NumPlazas, "
-				+"Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
+				+ "Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
 		
-		prstd.setDate(1, miServicio.getFecha());
-		prstd.setInt(2, idRecogida);
-		prstd.setInt(3, miServicio.getNumPlazas());
-		prstd.setFloat(4, miServicio.getPrecio());
+		prstd.setString(1, "\"" + servicio.getFecha() + " " + servicio.getHora() + "\"");
+		prstd.setInt(2, servicio.getNumRecogida());
+		prstd.setInt(3, servicio.getNumPlazas());
+		prstd.setFloat(4, servicio.getPrecio());
 		prstd.setInt(5, 0);
-		prstd.setInt(6, idRecorrido);
+		prstd.setInt(6, servicio.getNumRecorrido());
 		
 		int result = prstd.executeUpdate();
 		

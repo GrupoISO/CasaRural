@@ -139,12 +139,12 @@ public class ServicioRecogida extends JFrame {
 		servicio.setFecha(new Date(calendar.getCalendar().getTimeInMillis()));
 		servicio.setNumPlazas((Integer)plazasTextField.getValue());
 		servicio.setPrecio((Float)precioTextField.getValue());
+		servicio.setNumRecogida(((Recogida)recogidasComboBox.getSelectedItem()).getNumRecogida());
+		servicio.setNumRecorrido(((Recorrido)recorridosComboBox.getSelectedItem()).getNumRecorrido());
 		
 		GestorServicio gServicio = GestorServicio.getInstance();
 		
-		boolean result = gServicio.crearServicio(servicio,
-				((Recogida)recogidasComboBox.getSelectedItem()).getNumRecogida(),
-				((Recorrido)recorridosComboBox.getSelectedItem()).getNumRecorrido());
+		boolean result = gServicio.crearServicio(servicio);
 		
 		if (result) {
 			JOptionPane.showMessageDialog(this, "Se ha guardado con �xito",
