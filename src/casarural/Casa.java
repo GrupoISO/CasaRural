@@ -3,6 +3,8 @@ import java.io.*;
 
 public class Casa implements Serializable {
 	
+	private static final long serialVersionUID = -5804353691155232654L;
+	
 	private int numCasa;
 	private String propietario;
 	private String descripcion;
