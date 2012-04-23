@@ -1,0 +1,153 @@
+div.calendar {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	background-color: #ffffff;
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:290px;
+	height:auto;
+	z-index:1;
+	cursor: pointer;
+	
+	visibility: hidden;
+	border: 1px solid #999999;
+}
+table.calendar {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+
+	border: none;
+	width:100%;
+}
+tr.firstrow 
+{
+	background-color: #000099;
+}
+td.day {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	border:none;
+	width: 14%;
+	text-align: center;
+}
+td.today {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	border: 1px solid #000033;
+	width: 14%;
+	text-align: center;
+	color: #ff0000;
+}
+
+td.weekends 
+{
+	background-color:#CCCCEE;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	border:none;
+	width: 14%;
+	text-align: center;
+}
+
+td.weekends_out 
+{
+	background-color:#CCCCEE;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	border:none;
+	width: 14%;
+	color: gray;
+	text-align: center;
+}
+td.day_out {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	width: 14%;
+	text-align: center;
+	color: gray;
+	background-color: #ffffff;
+}
+td.day_c {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	border: 1px solid #333333;
+	width: 14%;
+	text-align: center;
+	color: white;
+	background-color: black;
+}
+/* class to hidden week col*/
+td.weekhidden
+{
+	display:none;
+}
+td.week
+{
+	font-weight: bold;
+	font-size: 11px;
+	width: 14%;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-left: 1px solid #999999;
+	background-color: #ffffff;
+	text-align: center;
+}
+td.weeksel
+{
+	font-weight: bold;
+	font-size: 11px;
+	width: 14%;
+	color: #000099;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-left: 1px solid #999999;
+	background-color: #ffffff;
+	text-align: center;
+}
+
+td.wd {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #ffffff;
+	
+	text-align: center;
+	width: 14%;
+}
+td.closew {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border: 1px none #000033;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: black;
+	font-variant: small-caps;
+	text-align: center;
+	width: 14%;
+}
+td.nav {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	width: 14%;
+	text-align: center;
+	border: none;
+	background-color: #000099;
+
+}
+select.nav {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	text-align: left;
+	background-color: #ffffff;
+	color: #000000;
+	border: none;
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="Windows-1252" ?>
+<XML_DIZ_INFO>
+<MASTER_PAD_VERSION_INFO>
+    <MASTER_PAD_VERSION>1.10</MASTER_PAD_VERSION>
+    <MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set that is used by shareware authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
+</MASTER_PAD_VERSION_INFO>
+<Company_Info>
+        <Company_Name>Atanas Neshkov</Company_Name>
+        <Address_1>Gorna Oriachovitza</Address_1>
+        <Address_2>Str. &quot;Slivnitza&quot; 21</Address_2>
+        <City_Town>Gorna Oriachovitza</City_Town>
+        <State_Province />
+        <Zip_Postal_Code>5100</Zip_Postal_Code>
+        <Country>Bulgaria</Country>
+        <Company_WebSite_URL>http://members.fortunecity.com/neshkov/dj.html</Company_WebSite_URL>
+<Contact_Info>
+        <Author_First_Name>Atanas</Author_First_Name>
+        <Author_Last_Name>Neshkov</Author_Last_Name>
+        <Author_Email>energo@svishtov.com</Author_Email>
+        <Contact_First_Name>Atanas</Contact_First_Name>
+        <Contact_Last_Name>Neshkov</Contact_Last_Name>
+        <Contact_Email>energo@svishtov.com</Contact_Email>
+    </Contact_Info>
+<Support_Info>
+        <Sales_Email>at_neshkov@yahoo.com</Sales_Email>
+        <Support_Email>at_neshkov@yahoo.com</Support_Email>
+        <General_Email>energo@svishtov.com</General_Email>
+        <Sales_Phone>+359 631 60393</Sales_Phone>
+        <Support_Phone>+359 631 60393</Support_Phone>
+        <General_Phone>+359 631 60393</General_Phone>
+        <Fax_Phone>+359 631 60168</Fax_Phone>
+    </Support_Info>
+</Company_Info>
+<Program_Info>
+        <Program_Name>DJ Java Decompiler</Program_Name>
+        <Program_Version>3.7.7.81</Program_Version>
+        <Program_Release_Month>04</Program_Release_Month>
+        <Program_Release_Day>21</Program_Release_Day>
+        <Program_Release_Year>2004</Program_Release_Year>
+        <Program_Cost_Dollars />
+        <Program_Cost_Other />
+        <Program_Type>Freeware</Program_Type>
+        <Program_Release_Status>Minor Update</Program_Release_Status>
+        <Program_Install_Support>Install and Uninstall</Program_Install_Support>
+        <Program_OS_Support>Win95,Win98,WinME,WinNT 3.x,WinNT 4.x,Windows2000</Program_OS_Support>
+        <Program_Language>English</Program_Language>
+        <Program_Change_Info>New decompiler options added. Specify radix for integers and long integers options added. Some bugs fixed.</Program_Change_Info>
+        <Program_System_Requirements>32 MB RAM, Microsoft Windows Installer</Program_System_Requirements>
+        <Program_Specific_Category>Development Tools</Program_Specific_Category>
+        <Program_Categories>Java</Program_Categories>
+<File_Info>
+        <Filename_Versioned>djdec377.zip</Filename_Versioned>
+        <Filename_Previous>djdec366.zip</Filename_Previous>
+        <Filename_Generic>djdec.zip</Filename_Generic>
+        <Filename_Long>DJ Java Decompiler</Filename_Long>
+        <File_Size_Bytes>1765667</File_Size_Bytes>
+        <File_Size_K>1724</File_Size_K>
+        <File_Size_MB>1.72</File_Size_MB>
+    </File_Info>
+<Expire_Info>
+        <Has_Expire_Info>N</Has_Expire_Info>
+        <Expire_Count />
+        <Expire_Based_On>Days</Expire_Based_On>
+        <Expire_Other_Info />
+        <Expire_Month />
+        <Expire_Day />
+        <Expire_Year />
+    </Expire_Info>
+        <Includes_JAVA_VM>N</Includes_JAVA_VM>
+        <Includes_VB_Runtime>N</Includes_VB_Runtime>
+        <Includes_DirectX>N</Includes_DirectX>
+</Program_Info>
+<Program_Descriptions>
+<English>
+        <Keywords>java,decompiler,decompile,free,editor,jad,disassembler,graphical,source,code,tool,applet,application</Keywords>
+        <Char_Desc_45>Free graphical java decompiler and editor.</Char_Desc_45>
+        <Char_Desc_80>Decompile any Java applets or binaries and reconstruct the original source code.</Char_Desc_80>
+        <Char_Desc_250>Reconstructs the original source code. DJ can take compiled binary class files including applets, and &quot;dead&quot; code parts and generate accurate source code. The program also includes a full-featured Java editor that features a GUI with syntax-coloring.</Char_Desc_250>
+        <Char_Desc_450>DJ Java Decompiler is Windows 95/98/Me/NT/2000 decompiler and disassembler for Java that reconstructs the original source code from the compiled binary CLASS files. This program can take compiled binary class files including applets, and &quot;dead&quot; code parts and generate accurate source code. The program also includes a full-featured Java editor that features a GUI with syntax-coloring. Enables users to save, edit and compile the generated java code</Char_Desc_450>
+        <Char_Desc_2000>DJ Java Decompiler is Windows 95/98/Me/NT/2000/XP decompiler and disassembler for Java that reconstructs the original source code from the compiled binary CLASS files (for example Java applets). DJ Java Decompiler is able to decompile complex Java applets and binaries, producing accurate source code. DJ Java Decompiler is a stand-alone Windows application; it doesn&apos;t require having Java installed! DJ Java Decompiler is not just Java decompiler and disassembler but it is also a fully featured Java editor using the graphic user interface with syntax-coloring. Using DJ Java Decompiler is easy. Select Open and load your desired class file, or just double-click the CLASS file you want to decompile. DJ Java Decompiler supports drag-and-drop functions for OLE. You will see the source code instantly! In Windows Explorer Right mouse-button pop-up menu available too. You can decompile or disassembler a CLASS files on your computer hard disk or on a network drive that you have a connection to. You don&apos;t need to have the Java Virtual Machine or any other Java SDK installed. But this latest release is able to compile, run, create JAR archives and run applets outside of the context of a Web browser when JDK is installed. With DJ Java Decompiler you can decompile more than one java class file at one time. This release enables users to decompile &quot;dead&quot; parts of code. DJ Java Decompiler is suitable for studying JAVA bytecode. DJ Java Decompiler enables users to save, print, edit and compile the generated java code.</Char_Desc_2000>
+</English>
+</Program_Descriptions>
+<Web_Info>
+<Application_URLs>
+        <Application_Info_URL>http://members.fortunecity.com/neshkov/dj.html</Application_Info_URL>
+        <Application_Order_URL />
+        <Application_Screenshot_URL />
+        <Application_Icon_URL />
+        <Application_XML_File_URL />
+    </Application_URLs>
+<Download_URLs>
+        <Primary_Download_URL />
+        <Secondary_Download_URL />
+        <Additional_Download_URL_1 />
+        <Additional_Download_URL_2 />
+    </Download_URLs>
+</Web_Info>
+<Permissions>
+        <Distribution_Permissions />
+        <EULA />
+</Permissions>
+<ASP>
+    <ASP_FORM>Y</ASP_FORM>
+    <ASP_Member>N</ASP_Member>
+    <ASP_Member_Number />
+</ASP>
+<Simtel.Net>
+    <Simtel.net_FORM>Y</Simtel.net_FORM>
+    <Simtel.Net_DOS_Category>Select - MS-DOS Platform</Simtel.Net_DOS_Category>
+    <Simtel.Net_Win31_Category>Select - Win3 Platform</Simtel.Net_Win31_Category>
+    <Simtel.Net_WinXX_Category>Programming - java Java Programming</Simtel.Net_WinXX_Category>
+    <Simtel.Net_Category>Programming - Visual Tools</Simtel.Net_Category>
+    <Simtel.Net_FTPCDROM_DISTRIBUTE_ON_CDROM>Y</Simtel.Net_FTPCDROM_DISTRIBUTE_ON_CDROM>
+</Simtel.Net>
+</XML_DIZ_INFO>

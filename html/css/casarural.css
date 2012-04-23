@@ -1,0 +1,45 @@
+th{
+	background-color: green;
+	color: white;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+tr.cebra1{
+	background-color: #9dff9e;
+	border: medium;
+	border-style: solid;
+	text-align: center;
+}
+tr.cebra2{
+	background-color: #57ff59;
+	border: medium;
+	border-style: solid;
+	text-align: center;
+}
+.boton{
+	background-color: #bdffbe;
+	border-style: groove;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.boton:hover{
+	background-color: #57ff59;
+}
+input:hover,input:focus{
+	background-color: #bdffbe;
+}
+.calendario{
+	border: none;
+	background: url(../images/calendar.png);
+	min-width: 30px;
+	min-height: 30px;
+}
+body{
+	background-color: #ffffc3;
+	text-align: center;
+}
+table{
+	margin-left: auto;
+	margin-right: auto;
+}

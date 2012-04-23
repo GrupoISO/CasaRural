@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+
+<!-- ======================================================================= -->
+<!-- ANT-Makefile for JCalendar (C) 2002 Kai Toedter                         -->
+<!-- ======================================================================= -->
+
+<project name="JCalendar" default="main" basedir="..">
+
+  <!-- ===================================================================== -->
+  <!-- PROPERTIES                                                            -->
+  <!-- ===================================================================== -->
+
+  <property name="version" value="1.1.4" />
+  <property name="modified" value="07/17/02" />
+
+  <property name="name" value="jcalendar" />
+  <property name="Name" value="JCalendar" />
+
+  <property name="classpath" value="" />
+
+  <property name="jcalendar.home" value=".." />
+
+  <property name="bin.dir" value="bin" />
+  <property name="build.dir" value="build" />
+  <property name="dist.dir" value="dist" />
+  <property name="docs.dir" value="docs" />
+  <property name="javadocs.dir" value="docs/api" />
+  <property name="lib.dir" value="lib" />
+  <property name="src.dir" value="src" />
+
+  <!-- ===================================================================== -->
+  <!-- COMPILER: classic (JDK 1.1 & 1.2), modern or jikes                    -->
+  <!-- ===================================================================== -->
+  <property name="build.compiler" value="modern" />
+
+  <property name="manifest" value="src/jcalendar.manifest" />
+  <property name="packages" value="com.toedter.calendar.*,com.toedter.components.*" />
+
+  <!-- ===================================================================== -->
+  <!-- MAIN                                                                  -->
+  <!-- ===================================================================== -->
+
+  <target name="main" depends="compile">
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- PREPARE BUILD                                                         -->
+  <!-- ===================================================================== -->
+
+  <target name="prepare">
+    <mkdir dir="${build.dir}" />
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- COMPILE                                                               -->
+  <!-- ===================================================================== -->
+
+  <target name="compile" depends="prepare">
+    <copy todir="${build.dir}">
+      <fileset dir="${src.dir}">
+        <patternset>
+          <include name="**/*.gif" />
+          <include name="**/classlist" />
+        </patternset>
+      </fileset>
+    </copy>
+    <javac srcdir="${src.dir}" destdir="${build.dir}"
+           classpath="${classpath};lib/kunststoff.jar"
+           debug="off" deprecation="on" optimize="on">
+    </javac>
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- JAR FILE                                                              -->
+  <!-- ===================================================================== -->
+
+  <target name="jar" depends="compile">
+    <mkdir dir="${lib.dir}" />
+    <jar jarfile="${lib.dir}/jcalendar.jar" compress="no"
+         basedir="${build.dir}" includes="com/**"
+         manifest="${manifest}"
+    />
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- JAVADOC                                                               -->
+  <!-- ===================================================================== -->
+
+  <target name="javadocs" depends="prepare">
+    <mkdir dir="${javadocs.dir}" />
+    <javadoc packagenames="${packages}"
+             sourcepath="${basedir}/${src.dir}"
+             classpath=".;lib/kunststoff.jar"
+             destdir="${javadocs.dir}"
+             author="true"
+             version="true"
+             windowtitle="${Name} API"
+             doctitle="${Name}"
+             bottom="Copyright &#169; 2002 Kai Toedter."
+    />
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- DISTRIBUTION                                                          -->
+  <!-- ===================================================================== -->
+
+  <target name="html">
+    <filter token="VERSION" value="${version}" />
+    <filter token="MODIFIED" value="${modified}" />
+
+    <copy file="${src.dir}/license.html" todir="${dist.dir}" filtering="no" />
+    <copy file="${src.dir}/readme.txt" todir="${dist.dir}" filtering="yes" />
+    <copy file="${src.dir}/index.html" todir="${dist.dir}" filtering="yes" />
+    <copy file="${src.dir}/demo.html" todir="${dist.dir}" filtering="yes" />
+    <copy file="${src.dir}/style.css" todir="${dist.dir}" filtering="no" />
+  </target>
+
+  <target name="dist" depends="jar,javadocs,html">
+    <filter token="VERSION" value="${version}" />
+    <filter token="MODIFIED" value="${modified}" />
+
+	<delete dir="${dist.dir}" />
+    <mkdir dir="${dist.dir}" />
+    <mkdir dir="${dist.dir}/bin" />
+    <mkdir dir="${dist.dir}/lib" />
+    <mkdir dir="${dist.dir}/docs" />
+    <mkdir dir="${dist.dir}/src" />
+
+    <copy todir="${dist.dir}/src">
+      <fileset dir="${src.dir}" />
+    </copy>
+    <copy todir="${dist.dir}/lib">
+      <fileset dir="${lib.dir}"  />
+    </copy>
+    <copy todir="${dist.dir}/bin">
+      <fileset dir="${bin.dir}" />
+    </copy>
+    <copy todir="${dist.dir}/docs">
+      <fileset dir="${docs.dir}" excludes="*.txt" />
+    </copy>
+    <copy todir="${dist.dir}">
+      <fileset dir="${docs.dir}" includes="*.txt" />
+    </copy>
+
+
+    <copy file="${src.dir}/license.html" todir="${dist.dir}" filtering="no" />
+    <copy file="${src.dir}/style.css" todir="${dist.dir}" filtering="no" />
+    <copy file="${src.dir}/readme.txt" todir="${dist.dir}" filtering="yes" />
+    <copy file="${src.dir}/index.html" todir="${dist.dir}" filtering="yes" />
+    <copy file="${src.dir}/demo.html" todir="${dist.dir}" filtering="yes" />
+
+    <!-- create a zip file -->
+    <zip zipfile="jcalendar.zip" >
+      <zipfileset dir="${dist.dir}" >
+	     <include name="**" />
+	  </zipfileset>
+    </zip>    
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run Demo                                                               -->
+  <!-- =================================================================== -->
+
+  <target name="runDemo" depends="jar">
+    <echo message="Running JCalendar demo ..."/>
+    <java classpath="lib/jcalendar.jar;lib/kunststoff.jar"
+		classname="com.toedter.calendar.JCalendarDemo" fork="yes" >
+    </java>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- CLEAN                                                               -->
+  <!-- =================================================================== -->
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+    <delete dir="${dist.dir}" />
+    <delete dir="${javadocs.dir}" />
+  </target>
+
+</project>
+
+<!-- End of build.xml -->
+
