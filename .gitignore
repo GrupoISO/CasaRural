@@ -27,3 +27,4 @@ local.properties
 
 # Específicos del proyecto
 html/WEB-INF/classes/*
+javadoc
