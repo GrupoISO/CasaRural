@@ -775,9 +775,9 @@ public final class GestorBD {
 	 */
 	public boolean crearServicio(Servicio servicio) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("INSERT INTO Servicio (Fecha, NumRecogida, NumPlazas, "
-				+ "Precio, NumPlazasReservadas, NumRecorrido) VALUES (?, ?, ?, ?, ?, ?)");
+				+ "Precio, NumPlazasReservadas, NumRecorrido) VALUES (\"" + servicio.getFecha() + " " + servicio.getHora() + "\", ?, ?, ?, ?, ?)");
 		
-		prstd.setString(1, "\"" + servicio.getFecha() + " " + servicio.getHora() + "\"");
+		//prstd.setString(1, "\"" + servicio.getFecha() + " " + servicio.getHora() + "\"");
 		prstd.setInt(2, servicio.getNumRecogida());
 		prstd.setInt(3, servicio.getNumPlazas());
 		prstd.setFloat(4, servicio.getPrecio());
