@@ -69,8 +69,12 @@ public class GestorServicio {
 	 * @param numPlazas Numero de plazas que se quiere reservar
 	 * @return
 	 */
-	public boolean TransaccionDeReserva(List<Reserva> reservasTotales, int idReserva, String numTfno, float precioTotal, int idServicio, int numPlazas){
+	public boolean transaccionDeReserva(List<Reserva> reservasTotales, int idReserva, String numTfno, int idServicio, int numPlazas){
 		try {
+			float precioTotal = 0;
+			for(Reserva reserva: reservasTotales){
+				precioTotal = precioTotal + reserva.getPrecioTotal();
+			}
 			gbd.transaccionDeReserva(reservasTotales, idReserva, numTfno, precioTotal, idServicio, numPlazas);
 			return true;
 		}catch(SQLException ex){

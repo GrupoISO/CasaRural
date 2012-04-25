@@ -6,19 +6,19 @@ import java.util.ArrayList;
 
 public class GestorRecorridoTest extends TestCase {
 
-	private GestorRecorrido GR;
+	private GestorRecorrido gr;
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	protected void setUp() throws Exception {
-		this.GR = GestorRecorrido.getInstance();
+		this.gr = GestorRecorrido.getInstance();
 	}
 	
 	/**Prueba para verificar la instancia de GestorRecorrido
 	 * 
 	 */
 	public void testGetInstance() {
-		assertSame(this.GR, GestorRecorrido.getInstance());
+		assertSame(this.gr, GestorRecorrido.getInstance());
 	}
 	
 	/**Prueba del método GetCodigoCasas
@@ -35,7 +35,7 @@ public class GestorRecorridoTest extends TestCase {
 		miCasa.setNumPlazasGaraje(0);
 		miCasa.setPoblacion("Donostia");
 		
-		List<Casa> listaDeCasas = GR.getCodigoCasas();
+		List<Casa> listaDeCasas = gr.getCodigoCasas();
 		//Verificamos que efectivamente se ha devuelto una list no vacia
 		assertFalse(listaDeCasas.isEmpty());
 		//Verificamos que la primera casa esta en la lista recibida
@@ -64,7 +64,7 @@ public class GestorRecorridoTest extends TestCase {
 		List<Casa> listaDeCasas = new ArrayList<Casa>();
 		listaDeCasas.add(miCasa);
 		
-		assertTrue(GR.asignarRecorrido(listaDeCasas));
+		assertTrue(gr.asignarRecorrido(listaDeCasas));
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class GestorRecorridoTest extends TestCase {
 	 * solo funciona con los datos iniciales de la BD
 	 */
 	public void testGetRecorridos() {
-		List<Recorrido> listaDeRecorrido = GR.getRecorridos();
+		List<Recorrido> listaDeRecorrido = gr.getRecorridos();
 		//Comprobar que la lista que se recive no es vacia
 		assertFalse(listaDeRecorrido.isEmpty());
 		//Comprobamos que existe el numRecorrido 1 en la lista de recorridos devuelta que está en la BD inicial 
