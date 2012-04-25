@@ -113,7 +113,7 @@ public class TestGestorBD2 extends TestCase {
 		}
 	}
 	/**
-	 * Prueba la función 'obtenerServicios'
+	 * Prueba la función 'obtenerServicios' en una situación normal
 	 */
 	public void test_obtenerServicios_lleno() {
 		try {
@@ -129,15 +129,29 @@ public class TestGestorBD2 extends TestCase {
 		}
 	}
 	
+	/**
+	 * Prueba la función 'obtenerServicios' para una fecha enla que no hay servicios
+	 */
 	public void test_obtenerServicios_vacio() {
 		try {
 			java.sql.Date fecha = new java.sql.Date(1335312000000L);
 			List<Servicio> servicios = gestorBD.obtenerServicios(1, fecha);
-			// debe devolver al menos dos servicios: los números 4 y 7
+			// no debe obtener ningún servicio
 			assertTrue(servicios.isEmpty());
 		} catch (Exception e) {
 			fail("Excepción en obtenerServicios");
 		}
 	}
-
+	
+	/**
+	 * Prueba la función 'transaccionDeReserva' para el caso en el que se contrata un servicio de recogida
+	 */
+	public void test_transaccionDeReserva() {
+		try { // en construcción
+			Reserva r = new Reserva();
+			assertTrue(true);
+		} catch (Exception e) {
+			fail("Excepción en transaccinoDeReserva");
+		}
+	}
 }
