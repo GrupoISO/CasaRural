@@ -662,7 +662,7 @@ public final class GestorBD {
 	 * @return void
 	 * @throws SQLException
 	 */
-	public void transaccionDeReserva(List<Reserva> reservasTotales, int numReserva, String numTfnoReserva, float precioTotal, int idServicio, int numPlazas) throws SQLException {
+	public void transaccionDeReserva(List<Oferta> reservasTotales, int numReserva, String numTfnoReserva, float precioTotal, int idServicio, int numPlazas) throws SQLException {
 		try {
 			java.sql.Date diadehoy = new java.sql.Date(System.currentTimeMillis());
 			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
@@ -670,10 +670,10 @@ public final class GestorBD {
 					+ "VALUES (" + numReserva + ", FALSE, \"" + diadehoy + "\", \"" + numTfnoReserva + "\", " + precioTotal + ", " + idServicio + ")";
 			s.executeUpdate(consulta1);
 			s.executeUpdate("UPDATE Servicio SET NumPlazasreservadas = NumPlazasreservadas+" + numPlazas + " WHERE NumServicio = " + idServicio);
-			for (Reserva nOferta: reservasTotales) {
+			for (Oferta nOferta: reservasTotales) {
 				String consulta = "UPDATE Oferta SET NumReserva = \""
 						+ numReserva + "\" WHERE NumOferta = "
-						+ Integer.valueOf(nOferta.getNumReserva()).intValue();
+						+ Integer.valueOf(nOferta.getNumOferta()).intValue();
 				s.executeUpdate(consulta);
 			}
 			s.executeUpdate("COMMIT");
