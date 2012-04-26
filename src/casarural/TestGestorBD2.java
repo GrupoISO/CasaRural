@@ -148,7 +148,14 @@ public class TestGestorBD2 extends TestCase {
 	 */
 	public void test_transaccionDeReserva() {
 		try { // en construcción
-			Reserva r = new Reserva();
+			List<Oferta> ofertas = new ArrayList<Oferta>();
+			Oferta o = new Oferta();
+			o.setNumOferta("153");
+			ofertas.add(o);
+			o = new Oferta();
+			o.setNumOferta("155");
+			ofertas.add(o);
+			gestorBD.transaccionDeReserva(ofertas, 10, "943-000000", (float) 123.45, 6, 4);
 			assertTrue(true);
 		} catch (Exception e) {
 			fail("Excepción en transaccinoDeReserva");
