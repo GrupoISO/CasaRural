@@ -73,14 +73,13 @@ public class GestorServicioTest extends TestCase {
 		java.sql.Time hora = new java.sql.Time(fechaActual.getTime());
 		servicio.setHora(hora);
 		servicio.setTipoRecogida("Prueba");
-		
+
 		//Probamos a crear un servicio que no tiene asignado un recorrido
-		//assertFalse(gs.crearServicio(servicio));
-		
+		assertFalse(gs.crearServicio(servicio));
+
 		//Probamos un servicio que si tiene asignado el recorrido
 		servicio.setNumRecorrido(1);
 		assertTrue(gs.crearServicio(servicio));
-	
 	}
 
 	/**
@@ -89,23 +88,16 @@ public class GestorServicioTest extends TestCase {
 	 */
 	public void testMostrarServicios() {
 		//Obtendremos una lista de servcios asociados a la primera casa rural de los datos iniciales de la BD
-		List<Servicio> listaDeServicios = gs.mostrarServicios(1);
-		//Comprobaremos que existen los servicios asignados a la primera casa rural 
-		List<Integer> lista = new ArrayList<Integer>();
-		lista.add(1);
-		lista.add(3);
-		lista.add(4);
-		lista.add(5);
-		lista.add(7);
-		int encontrados = 0;
+		java.util.Date fech = new java.util.Date(2012, 1, 23); 
+		java.sql.Date fecha = new java.sql.Date(fech.getTime());
+		List<Servicio> listaDeServicios = gs.mostrarServicios(1, fecha);
+
+		boolean encontrado = false;
 		for (Servicio servicio : listaDeServicios){
 			System.out.println(servicio.getNumServicio());
-			for(Integer numServicio: lista ){
-				if (numServicio == servicio.getNumServicio()) encontrados++;
-			}
+			if (servicio.getNumServicio() == 1) encontrado = true;
 		}
-		System.out.println(encontrados);
-		assertTrue(encontrados == 5);
+		assertTrue(encontrado);
 	}
 
 	/**
@@ -120,8 +112,8 @@ public class GestorServicioTest extends TestCase {
 		List<Reserva> listaDeUnareserva = new ArrayList<Reserva>();
 		listaDeUnareserva.add(reserva);
 		
-		//Crearemos una reserva de prueba y tomaremos la confirmación del GestorBD
-		boolean estado = gs.transaccionDeReserva(listaDeUnareserva, 2, "943000000", 1, 5);
+		//Crearemos una reserva de prueba y tomaremos la confirmación del GestorBtD
+		boolean estado = gs.transaccionDeReserva(listaDeUnareserva, 8,"943000000", 1, 5);
 		assertTrue(estado);
 	}
 

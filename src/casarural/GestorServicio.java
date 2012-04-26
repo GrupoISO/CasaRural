@@ -46,15 +46,13 @@ public class GestorServicio {
 		}
 	}
 	
-	/**Obtiene una lista de Servicios asignados a una casa rural
+	/**Obtiene una lista de Servicios asignados a una casa rural en la fecha indicada
 	 * 
 	 * @param numCasa Código de la casa rural de la cual se requieren los servicios
 	 * @return listaDeServicios asociados a una casa rural
 	 */
-	public List<Servicio> mostrarServicios(int numCasa){
+	public List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha){
 		try {
-			java.util.Date fechaActual = new java.util.Date();
-			java.sql.Date fecha = new java.sql.Date(fechaActual.getTime());
 			return gbd.obtenerServicios(numCasa, fecha);
 		}catch(SQLException ex){
 			ex.printStackTrace();
@@ -69,11 +67,11 @@ public class GestorServicio {
 	 * @param numPlazas Numero de plazas que se quiere reservar
 	 * @return
 	 */
-	public boolean transaccionDeReserva(List<Reserva> reservasTotales, int idReserva, String numTfno, int idServicio, int numPlazas){
+	public boolean transaccionDeReserva(List<Oferta> reservasTotales, int idReserva, String numTfno, int idServicio, int numPlazas){
 		try {
 			float precioTotal = 0;
-			for(Reserva reserva: reservasTotales){
-				precioTotal = precioTotal + reserva.getPrecioTotal();
+			for(Oferta reservaOferta: reservasTotales){
+				precioTotal = precioTotal + reservaOferta.getPrecio();
 			}
 			gbd.transaccionDeReserva(reservasTotales, idReserva, numTfno, precioTotal, idServicio, numPlazas);
 			return true;
