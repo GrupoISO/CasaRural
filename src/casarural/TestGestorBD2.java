@@ -146,8 +146,8 @@ public class TestGestorBD2 extends TestCase {
 	/**
 	 * Prueba la función 'transaccionDeReserva' para el caso en el que se contrata un servicio de recogida
 	 */
-	public void test_transaccionDeReserva() {
-		try { // en construcción
+/*	public void test_transaccionDeReserva() {
+		try {
 			List<Oferta> ofertas = new ArrayList<Oferta>();
 			Oferta o = new Oferta();
 			o.setNumOferta("153");
@@ -159,6 +159,21 @@ public class TestGestorBD2 extends TestCase {
 			assertTrue(true);
 		} catch (Exception e) {
 			fail("Excepción en transaccinoDeReserva");
+		}
+	}*/
+	
+	/**
+	 * Prueba la función 'transaccionDeReserva' para un caso de error
+	 */
+	public void test_transaccionDeReserva_error() {
+		try {
+			List<Oferta> ofertas = new ArrayList<Oferta>();
+			Oferta o = new Oferta();
+			ofertas.add(o);
+			gestorBD.transaccionDeReserva(ofertas, 11, "945-000000", (float) 67.89, 1, 2);
+			fail("transaccionDeReserva tenía que haber lanzado excepción");
+		} catch (Exception e) {
+			assertTrue(true);
 		}
 	}
 }

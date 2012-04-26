@@ -665,6 +665,7 @@ public final class GestorBD {
 	public void transaccionDeReserva(List<Oferta> reservasTotales, int numReserva, String numTfnoReserva, float precioTotal, int idServicio, int numPlazas) throws SQLException {
 		try {
 			java.sql.Date diadehoy = new java.sql.Date(System.currentTimeMillis());
+			c.setAutoCommit(false);
 			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
 			String consulta1 = "INSERT INTO Reserva (NumReserva, Pagado, Fecha, NumTfno, PrecioTotal, NumServicio) "
 					+ "VALUES (" + numReserva + ", FALSE, \"" + diadehoy + "\", \"" + numTfnoReserva + "\", " + precioTotal + ", " + idServicio + ")";
@@ -676,9 +677,11 @@ public final class GestorBD {
 						+ Integer.valueOf(nOferta.getNumOferta()).intValue();
 				s.executeUpdate(consulta);
 			}
-			s.executeUpdate("COMMIT");
+			c.commit();
+			c.setAutoCommit(true);
 		} catch(SQLException e){
-			s.executeUpdate("ROLLBACK");
+			c.rollback();
+			c.setAutoCommit(true);
 			System.out.println(e.toString());
 			throw new SQLException();
 		}
