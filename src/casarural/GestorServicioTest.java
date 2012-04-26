@@ -88,7 +88,7 @@ public class GestorServicioTest extends TestCase {
 	 */
 	public void testMostrarServicios() {
 		//Obtendremos una lista de servcios asociados a la primera casa rural de los datos iniciales de la BD
-		java.util.Date fech = new java.util.Date(2012, 1, 23); 
+		java.util.Date fech = new java.util.Date(1327273200000L); 
 		java.sql.Date fecha = new java.sql.Date(fech.getTime());
 		List<Servicio> listaDeServicios = gs.mostrarServicios(1, fecha);
 
@@ -105,9 +105,11 @@ public class GestorServicioTest extends TestCase {
 	 * Las pruebas se realizan con los datos de la BD iniciales.
 	 */
 	public void testTransaccionDeReserva() {
-		Reserva reserva = new Reserva();
-		reserva.setPrecioTotal(999.9f);
-		reserva.setNumCasa(1);
+//		Reserva reserva = new Reserva();
+//		reserva.setPrecioTotal(999.9f);
+//		reserva.setNumCasa(1);
+		Oferta oferta = new Oferta();
+		oferta.setNumCasa(numCasa);
 		
 		List<Reserva> listaDeUnareserva = new ArrayList<Reserva>();
 		listaDeUnareserva.add(reserva);
