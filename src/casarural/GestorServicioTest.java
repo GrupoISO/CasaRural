@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class GestorServicioTest extends TestCase {
 
 	private GestorServicio gs;
+	private static String ficheroNumReserva = "numeroReserva.txt";
 	
 	/**
 	 * @param name
@@ -109,7 +110,8 @@ public class GestorServicioTest extends TestCase {
 //		reserva.setPrecioTotal(999.9f);
 //		reserva.setNumCasa(1);
 		Oferta oferta = new Oferta();
-		oferta.setNumCasa(numCasa);
+		oferta.setNumCasa(1);
+		oferta.setNumOferta("Oferta de Prueba");
 		
 		List<Reserva> listaDeUnareserva = new ArrayList<Reserva>();
 		listaDeUnareserva.add(reserva);
