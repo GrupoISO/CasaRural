@@ -2,7 +2,6 @@
  * 
  */
 package casarural;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -76,6 +75,7 @@ public class GestorServicioTest extends TestCase {
 		servicio.setTipoRecogida("Prueba");
 
 		//Probamos a crear un servicio que no tiene asignado un recorrido
+		//Se debería lanzar un SQL exception en consola debido ha que no se ha asignado un número de recorrido
 		assertFalse(gs.crearServicio(servicio));
 
 		//Probamos un servicio que si tiene asignado el recorrido
@@ -95,7 +95,6 @@ public class GestorServicioTest extends TestCase {
 
 		boolean encontrado = false;
 		for (Servicio servicio : listaDeServicios){
-			System.out.println(servicio.getNumServicio());
 			if (servicio.getNumServicio() == 1) encontrado = true;
 		}
 		assertTrue(encontrado);
@@ -111,13 +110,13 @@ public class GestorServicioTest extends TestCase {
 //		reserva.setNumCasa(1);
 		Oferta oferta = new Oferta();
 		oferta.setNumCasa(1);
-		oferta.setNumOferta("Oferta de Prueba");
+		oferta.setNumOferta("123");
 		
-		List<Reserva> listaDeUnareserva = new ArrayList<Reserva>();
-		listaDeUnareserva.add(reserva);
+		List<Oferta> listaDeUnareserva = new ArrayList<Oferta>();
+		listaDeUnareserva.add(oferta);
 		
 		//Crearemos una reserva de prueba y tomaremos la confirmación del GestorBtD
-		boolean estado = gs.transaccionDeReserva(listaDeUnareserva, 8,"943000000", 1, 5);
+		boolean estado = gs.transaccionDeReserva(listaDeUnareserva,"943000000", 1, 5);
 		assertTrue(estado);
 	}
 
