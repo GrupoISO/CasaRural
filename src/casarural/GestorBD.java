@@ -2,8 +2,6 @@ package casarural;
 
 import java.sql.*;
 import java.util.*;
-//import java.rmi.*;
-//import java.sql.Date.*;
 
 public final class GestorBD {
 
@@ -259,7 +257,8 @@ public final class GestorBD {
 	public void transaccionDeReserva(List<String> reservasTotales, String numReserva, String numTfnoReserva, float precioTotal) {
 		try { // CAMBIADO
 			java.sql.Date diadehoy = new java.sql.Date(System.currentTimeMillis());
-			s.executeQuery("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;");
+			c.setAutoCommit(false);
+			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;");
 			String consulta1 = "INSERT INTO Reserva (NumReserva, Pagado, Fecha, NumTfno, PrecioTotal) "
 					+ "VALUES (" + numReserva + ", FALSE, \"" + diadehoy + "\", \"" + numTfnoReserva + "\", " + precioTotal + ")";
 			s.executeUpdate(consulta1);
@@ -269,9 +268,16 @@ public final class GestorBD {
 						+ Integer.valueOf(nOferta).intValue();
 				s.executeUpdate(consulta);
 			}
-			s.executeQuery("COMMIT;");
-		} catch (Exception ex) {
-			System.out.println(ex.toString());
+			c.commit();
+			c.setAutoCommit(true);
+		} catch(Exception e){
+			System.out.println(e.toString());
+			try {
+				c.rollback();
+				c.setAutoCommit(true);
+			} catch(Exception e2) {
+				System.out.println(e2.toString());
+			}
 		}
 	}
 
@@ -544,7 +550,8 @@ public final class GestorBD {
 	public void anularReserva(String numR, Vector<Oferta> ofertas, Vector<Oferta> ofAnular) throws SQLException{
 
 		try {
-			s.executeQuery("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;");
+			c.setAutoCommit(false);
+			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;");
 			for(int i=0;i<ofertas.size();i++){
 				s.executeUpdate("UPDATE Oferta SET NumReserva = NULL "
 						+ "WHERE NumOferta = " + Integer.parseInt(ofertas.elementAt(i).getNumOferta()));
@@ -554,12 +561,13 @@ public final class GestorBD {
 						+ "WHERE NumOferta = "+Integer.parseInt(ofAnular.elementAt(i).getNumOferta()));
 			}
 			s.executeUpdate("DELETE FROM Reserva WHERE NumReserva = " + numR);
-			s.executeQuery("COMMIT;");
+			c.commit();
+			c.setAutoCommit(true);
 		}
 		catch(SQLException e){
-			s.executeQuery("ROLLBACK;");
+			c.rollback();
+			c.setAutoCommit(true);
 			System.out.println(e.toString());
-			e.printStackTrace();
 			throw new SQLException();
 		}
 	}
@@ -598,6 +606,7 @@ public final class GestorBD {
 		int recorrido = -1;
 		if (casas.isEmpty()) return recorrido; // si la lista viene vacía, no se inserta nada
 		try {
+			c.setAutoCommit(false);
 			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
 			
 			ResultSet rs = s.executeQuery("SELECT MAX(NumRecorrido) AS Ultimo FROM Recorrido");
@@ -607,9 +616,11 @@ public final class GestorBD {
 			s.executeUpdate("INSERT INTO Recorrido (NumRecorrido) VALUES (" + recorrido + ")");
 			for(int i=0; i<casas.size(); i++)
 				s.executeUpdate("INSERT INTO CasaRural_Recorrido (Recorrido_NumRecorrido, CasaRural_NumCasa) VALUES (" + recorrido + ", " + casas.get(i).getNumCasa() + ")");
-			s.executeUpdate("COMMIT");
+			c.commit();
+			c.setAutoCommit(true);
 		} catch(SQLException e){
-			s.executeUpdate("ROLLBACK");
+			c.rollback();
+			c.setAutoCommit(true);
 			System.out.println(e.toString());
 			throw new SQLException();
 		}
@@ -686,34 +697,7 @@ public final class GestorBD {
 			throw new SQLException();
 		}
 	}
-/*
-	public List<Servicio> getServicios() {
-		List<Servicio> servicios = new ArrayList<Servicio>();
-		
-		try {
-			ResultSet rs = s.executeQuery("SELECT NumServicio, Fecha, NumRecogida, NumPlazas, "
-					+" Precio, NumPlazasReservadas, NumRecorrido FROM Recorrido");
-			
-			while (rs.next()) {
-				Servicio servicio = new Servicio();
-				
-				servicio.setNumRecorrido(rs.getInt("NumRecorrido"));
-				servicio.setFecha(rs.getDate("Fecha"));
-				servicio.setNumRecogida(rs.getInt("NumRecogida"));
-				servicio.setNumPlazas(rs.getInt("NumPlazas"));
-				servicio.setPrecio(rs.getFloat("Precio"));
-				servicio.setNumPlazasReservadas(rs.getInt("NumPlazasReservadas"));
-				servicio.setNumRecorrido(rs.getInt("NumRecorrido"));
-				
-				servicios.add(servicio);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return servicios;
-	}
-*/
+	
 	
 	/**
 	 * Obtiene los identificadores de todos los recorridos almacenados
@@ -735,7 +719,7 @@ public final class GestorBD {
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		
 		return recorridos;
@@ -763,7 +747,7 @@ public final class GestorBD {
 				recogidas.add(recogida);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
 		
 		return recogidas;
