@@ -3,7 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Pantalla de inicio</title>
-    <LINK REL=StyleSheet HREF="css/casarural.css" TYPE="text/css">
+    <LINK REL=StyleSheet HREF="css/base.css" TYPE="text/css">
+    <link rel="SyleSheet" href="css/layout.css" type="text/css">
+    <link rel="SyleSheet" href="css/skeleton.css" type="text/css">
   </head>
   <body>
     <P align="center">
