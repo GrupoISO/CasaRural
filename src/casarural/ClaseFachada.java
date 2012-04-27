@@ -19,6 +19,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	GestorReservas elGestorReservas = GestorReservas.getInstance();
 
 	GestorOfertas elGestorOfertas = GestorOfertas.getInstance();
+	
+	GestorAdministrador elGestorAdministrador = GestorAdministrador.getInstance();
 
 	public ClaseFachada() throws RemoteException {
 	}
@@ -210,8 +212,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	/**
 	 * Devuelve en un array de enteros el resultado tras realizar las
 	 * anulaciones de las reservas indicadas en el array reservas que se pasa
-	 * como parámetro. Un 0 indica anulación correcta, 1 anulación incorrecta y
-	 * 2 que se devolverá el 20%
+	 * como parï¿½metro. Un 0 indica anulaciï¿½n correcta, 1 anulaciï¿½n incorrecta y
+	 * 2 que se devolverï¿½ el 20%
 	 * 
 	 * @param reservas
 	 *            , String[]
@@ -222,5 +224,10 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public int[] anularReservas(String[] reservas) throws RemoteException,
 			Exception {
 		return elGestorReservas.anularReservas(reservas);
+	}
+
+	
+	public boolean esAdministrador(String codigo) throws RemoteException, Exception {
+		return elGestorAdministrador.esAdministrador(codigo);
 	}
 }
