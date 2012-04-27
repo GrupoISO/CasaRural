@@ -222,11 +222,11 @@ public interface InterfazFachada extends Remote {
 	 * @param ninguno
 	 * @return Una lista de las Casas rurales actuales
 	 */
-	List<Casa> getCodigoCasas();
+	List<Casa> getCodigoCasas() throws RemoteException;
 	
 	/**Asigna a un recorrido un cojunto de casas rurales
 	 * @param Una lista de Casas Rurales
 	 * @return confirmacion cierto/falso
 	 */
-	boolean asignarRecorrido(List<Casa> listaDeCasas);
+	boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException;
 }
