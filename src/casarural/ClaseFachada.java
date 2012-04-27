@@ -19,6 +19,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	GestorReservas elGestorReservas = GestorReservas.getInstance();
 
 	GestorOfertas elGestorOfertas = GestorOfertas.getInstance();
+	
+	GestorRecorrido elGestorRecorrido = GestorRecorrido.getInstance();
 
 	public ClaseFachada() throws RemoteException {
 	}
@@ -210,8 +212,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	/**
 	 * Devuelve en un array de enteros el resultado tras realizar las
 	 * anulaciones de las reservas indicadas en el array reservas que se pasa
-	 * como parámetro. Un 0 indica anulación correcta, 1 anulación incorrecta y
-	 * 2 que se devolverá el 20%
+	 * como parï¿½metro. Un 0 indica anulaciï¿½n correcta, 1 anulaciï¿½n incorrecta y
+	 * 2 que se devolverï¿½ el 20%
 	 * 
 	 * @param reservas
 	 *            , String[]
@@ -222,5 +224,21 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public int[] anularReservas(String[] reservas) throws RemoteException,
 			Exception {
 		return elGestorReservas.anularReservas(reservas);
+	}
+	
+	/**Obtencion de la lista de Casas Rurales disponibles actualmente en la BD
+	 * @param ninguno
+	 * @return Una lista de las Casas rurales actuales
+	 */
+	public List<Casa> getCodigoCasas(){
+		return elGestorRecorrido.getCodigoCasas();
+	}
+	
+	/**Asigna a un recorrido un cojunto de casas rurales
+	 * @param Una lista de Casas Rurales
+	 * @return confirmacion cierto/falso
+	 */
+	public boolean asignarRecorrido(List<Casa> listaDeCasas){
+		return elGestorRecorrido.asignarRecorrido(listaDeCasas);
 	}
 }
