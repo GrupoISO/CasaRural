@@ -220,4 +220,16 @@ public interface InterfazFachada extends Remote {
 	
 	
 	boolean esAdministrador(String codigo) throws RemoteException, Exception;
+
+	/**Obtencion de la lista de Casas Rurales disponibles actualmente en la BD
+	 * @param ninguno
+	 * @return Una lista de las Casas rurales actuales
+	 */
+	List<Casa> getCodigoCasas() throws RemoteException;
+	
+	/**Asigna a un recorrido un cojunto de casas rurales
+	 * @param Una lista de Casas Rurales
+	 * @return confirmacion cierto/falso
+	 */
+	boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException;
 }

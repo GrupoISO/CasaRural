@@ -22,6 +22,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	
 	GestorAdministrador elGestorAdministrador = GestorAdministrador.getInstance();
 
+	GestorRecorrido elGestorRecorrido = GestorRecorrido.getInstance();
+
 	public ClaseFachada() throws RemoteException {
 	}
 
@@ -229,5 +231,21 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	
 	public boolean esAdministrador(String codigo) throws RemoteException, Exception {
 		return elGestorAdministrador.esAdministrador(codigo);
+	}
+	
+	/**Obtencion de la lista de Casas Rurales disponibles actualmente en la BD
+	 * @param ninguno
+	 * @return Una lista de las Casas rurales actuales
+	 */
+	public List<Casa> getCodigoCasas(){
+		return elGestorRecorrido.getCodigoCasas();
+	}
+	
+	/**Asigna a un recorrido un cojunto de casas rurales
+	 * @param Una lista de Casas Rurales
+	 * @return confirmacion cierto/falso
+	 */
+	public boolean asignarRecorrido(List<Casa> listaDeCasas){
+		return elGestorRecorrido.asignarRecorrido(listaDeCasas);
 	}
 }

@@ -25,7 +25,7 @@ public class GestorRecorrido {
 		return elGestorRecorrido;
 	}
 	
-	/**Obtencion de la lista de Casas Rurales crea una nueva interfaz IURecorrido
+	/**Obtencion de la lista de Casas Rurales actuales en la BD
 	 * @param ninguno
 	 * @return Una lista de las Casas rurales actuales
 	 */
