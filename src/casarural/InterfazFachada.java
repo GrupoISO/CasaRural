@@ -205,16 +205,28 @@ public interface InterfazFachada extends Remote {
 			throws RemoteException, Exception;
 
 	/**
-	 * Anula las reservas indicadas en el array y restablece las ofertas según
+	 * Anula las reservas indicadas en el array y restablece las ofertas segï¿½n
 	 * corresponda
 	 * 
 	 * @param reservas
-	 *            , array de strings que contiene los números de las reservas a
+	 *            , array de strings que contiene los nï¿½meros de las reservas a
 	 *            anular
-	 * @return 0 si anulación correcta,1 si anulación errónea, 2 si hay que
+	 * @return 0 si anulaciï¿½n correcta,1 si anulaciï¿½n errï¿½nea, 2 si hay que
 	 *         devolver dinero
 	 * @throws RemoteException
 	 * @throws Exception
 	 */
 	int[] anularReservas(String[] reservas) throws RemoteException, Exception;
+	
+	/**Obtencion de la lista de Casas Rurales disponibles actualmente en la BD
+	 * @param ninguno
+	 * @return Una lista de las Casas rurales actuales
+	 */
+	List<Casa> getCodigoCasas();
+	
+	/**Asigna a un recorrido un cojunto de casas rurales
+	 * @param Una lista de Casas Rurales
+	 * @return confirmacion cierto/falso
+	 */
+	boolean asignarRecorrido(List<Casa> listaDeCasas);
 }
