@@ -1,11 +1,10 @@
 package casarural;
 
-//import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
 
-
+// NOTA: TODAS LAS PRUEBAS DEBEN HACERSE CON LA BASE DE DATOS INICIAL
 public class TestGestorBD2 extends TestCase {
 
 	private GestorBD gestorBD;
@@ -74,7 +73,7 @@ public class TestGestorBD2 extends TestCase {
 			}
 			assertTrue(b);
 		} catch (Exception e) {
-			fail("Excepción en obtenerCasas");
+			fail(e.getMessage());
 		}
 	}
 	
@@ -82,8 +81,7 @@ public class TestGestorBD2 extends TestCase {
 	/**
 	 * Prueba la función 'insertarRecorrido' en una situación normal
 	 */
-/*	public void test_insertarRecorrido_lleno() {
-		boolean b = true;
+	public void test_insertarRecorrido_lleno() {
 		List<Casa> casas = new ArrayList<Casa>();
 		Casa ca;
 		
@@ -96,11 +94,11 @@ public class TestGestorBD2 extends TestCase {
 		casas.add(ca);
 		
 		try {
-			assertEquals(5, gestorBD.insertarRecorrido(casas));
+			assertTrue(gestorBD.insertarRecorrido(casas) > 4);
 		} catch (Exception e) {
-			fail("Excepción en obtenerCasas");
+			fail(e.getMessage());
 		}
-	}*/
+	}
 	
 	/**
 	 * Prueba la función 'insertarRecorrido' con una lista vacía
@@ -109,7 +107,7 @@ public class TestGestorBD2 extends TestCase {
 		try {
 			assertEquals(-1, gestorBD.insertarRecorrido(new ArrayList<Casa>()));
 		} catch (Exception e) {
-			fail("Excepción en obtenerCasas");
+			fail(e.getMessage());
 		}
 	}
 	/**
@@ -125,7 +123,7 @@ public class TestGestorBD2 extends TestCase {
 			b = b && servicios.get(1).getNumServicio() == 4 || servicios.get(1).getNumServicio() == 7;
 			assertTrue(b);
 		} catch (Exception e) {
-			fail("Excepción en obtenerServicios");
+			fail(e.getMessage());
 		}
 	}
 	
@@ -139,14 +137,14 @@ public class TestGestorBD2 extends TestCase {
 			// no debe obtener ningún servicio
 			assertTrue(servicios.isEmpty());
 		} catch (Exception e) {
-			fail("Excepción en obtenerServicios");
+			fail(e.getMessage());
 		}
 	}
 	
 	/**
 	 * Prueba la función 'transaccionDeReserva' para el caso en el que se contrata un servicio de recogida
 	 */
-/*	public void test_transaccionDeReserva() {
+	public void test_transaccionDeReserva() {
 		try {
 			List<Oferta> ofertas = new ArrayList<Oferta>();
 			Oferta o = new Oferta();
@@ -158,9 +156,9 @@ public class TestGestorBD2 extends TestCase {
 			gestorBD.transaccionDeReserva(ofertas, 10, "943-000000", (float) 123.45, 6, 4);
 			assertTrue(true);
 		} catch (Exception e) {
-			fail("Excepción en transaccinoDeReserva");
+			fail(e.getMessage());
 		}
-	}*/
+	}
 	
 	/**
 	 * Prueba la función 'transaccionDeReserva' para un caso de error
@@ -189,7 +187,7 @@ public class TestGestorBD2 extends TestCase {
 			}
 			assertTrue(b);
 		} catch (Exception e) {
-			fail("Excepción en getRecorridos");
+			fail(e.getMessage());
 		}
 	}
 	
@@ -205,28 +203,37 @@ public class TestGestorBD2 extends TestCase {
 			}
 			assertTrue(b);
 		} catch (Exception e) {
-			fail("Excepción en getRecogidas");
+			fail(e.getMessage());
 		}
 	}
 	
 	/**
-	 * Prueba la función 'crearServicio'
+	 * Prueba la función 'crearServicio' en una situación normal
 	 */
-	public void test_crearServicio() {
+	public void test_crearServicio_bien() {
 		try {
-			boolean b = true;
 			Servicio s = new Servicio();
-			s.setFecha(new java.sql.Date(1335312000000L));
-//			java.util.Date fechaActual = new java.util.Date();
+			s.setFecha(new java.sql.Date(1336953600000L));
 			s.setHora(new java.sql.Time(new java.util.Date().getTime()));
 			s.setNumRecogida(2);
 			s.setNumPlazas(21);
 			s.setPrecio((float) 98.76);
-			
-
-			assertTrue(b);
+			s.setNumRecorrido(3);
+			assertTrue(gestorBD.crearServicio(s));
 		} catch (Exception e) {
-			fail("Excepción en getRecorridos");
+			fail(e.getMessage());
+		}
+	}
+	
+	/**
+	 * Prueba la función 'crearServicio' para un caso de error
+	 */
+	public void test_crearServicio_error() {
+		try {
+			Servicio s = new Servicio();
+			assertFalse(gestorBD.crearServicio(s));
+		} catch (Exception e) {
+			assertTrue(true);
 		}
 	}
 }
