@@ -166,17 +166,18 @@ public class ServicioRecogida extends JFrame {
 		Servicio servicio = new Servicio();
 		
 		servicio.setFecha(new Date(calendar.getCalendar().getTimeInMillis()));
-		servicio.setNumPlazas((Integer)plazasTextField.getValue());
-		servicio.setPrecio((Float)precioTextField.getValue());
+		servicio.setNumPlazas(((Long)plazasTextField.getValue()).intValue());
+		servicio.setPrecio(((Double)precioTextField.getValue()).floatValue());
 		servicio.setNumRecogida(((Recogida)recogidasComboBox.getSelectedItem()).getNumRecogida());
 		servicio.setNumRecorrido(((Recorrido)recorridosComboBox.getSelectedItem()).getNumRecorrido());
-		if((Integer)textHora.getValue()<0 || (Integer)textHora.getValue()>23 || (Integer)textMin.getValue()<0 || (Integer)textMin.getValue()>59)
+		if(((Long)textHora.getValue()).intValue() < 0 || ((Long)textHora.getValue()).intValue() > 23 
+				|| ((Integer)textMin.getValue()).intValue() < 0 || ((Integer)textMin.getValue()).intValue() > 59)
 		{
 			lblError.setText("Formato erroneo: Hora(0..23) Minutos(0..59");
 		}
 		else
 		{
-			servicio.setHora(java.sql.Time.valueOf((String)textHora.getValue() + ":" + (String)textMin.getValue()));
+			servicio.setHora(java.sql.Time.valueOf(((Long)textHora.getValue()).toString() + ":" + ((Integer)textMin.getValue()).toString() + ":00"));
 			GestorServicio gServicio = GestorServicio.getInstance();
 
 			boolean result = gServicio.crearServicio(servicio);

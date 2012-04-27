@@ -176,4 +176,57 @@ public class TestGestorBD2 extends TestCase {
 			assertTrue(true);
 		}
 	}
+	
+	/**
+	 * Prueba la función 'getRecorridos'
+	 */
+	public void test_getRecorridos() {
+		try {
+			boolean b = true;
+			List<Recorrido> recorridos = gestorBD.getRecorridos();
+			for (int i=0; i<recorridos.size(); i++) {
+				b = b && recorridos.get(i).getNumRecorrido() == i+1;
+			}
+			assertTrue(b);
+		} catch (Exception e) {
+			fail("Excepción en getRecorridos");
+		}
+	}
+	
+	/**
+	 * Prueba la función 'getRecogidas'
+	 */
+	public void test_getRecogidas() {
+		try {
+			boolean b = true;
+			List<Recogida> recogidas = gestorBD.getRecogidas();
+			for (int i=0; i<recogidas.size(); i++) {
+				b = b && recogidas.get(i).getNumRecogida() == i+1;
+			}
+			assertTrue(b);
+		} catch (Exception e) {
+			fail("Excepción en getRecogidas");
+		}
+	}
+	
+	/**
+	 * Prueba la función 'crearServicio'
+	 */
+	public void test_crearServicio() {
+		try {
+			boolean b = true;
+			Servicio s = new Servicio();
+			s.setFecha(new java.sql.Date(1335312000000L));
+//			java.util.Date fechaActual = new java.util.Date();
+			s.setHora(new java.sql.Time(new java.util.Date().getTime()));
+			s.setNumRecogida(2);
+			s.setNumPlazas(21);
+			s.setPrecio((float) 98.76);
+			
+
+			assertTrue(b);
+		} catch (Exception e) {
+			fail("Excepción en getRecorridos");
+		}
+	}
 }
