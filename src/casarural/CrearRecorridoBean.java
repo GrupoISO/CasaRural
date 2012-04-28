@@ -2,12 +2,10 @@ package casarural;
 
 import java.rmi.*;
 import java.util.List;
-import java.util.ArrayList;
 
 public class CrearRecorridoBean {
 	
 	InterfazFachada logNeg;
-	private List<Casa> listaDeCasasSeleccionada = new ArrayList<Casa>();
 	
 	/**Constructor de la clase CrearrecorridoBean
 	 * @param ninguno
@@ -37,19 +35,12 @@ public class CrearRecorridoBean {
 		}
 	}
 	
-	/**Obtiene la lista de Casas cargadas en Bean
-	 * 	 * @return listaDeCasas
-	 */
-	public List<Casa> getlistaDeCasasSeleccionada(){
-		return listaDeCasasSeleccionada;
-	}
-	
 	/**Inserta un recorrido en la BD con la lista de Casas que toma como paremtro
 	 * 
-	 * @param ninguno
+	 * @param Una lista de casas, que son las que conforma el recorredo que se va a crear
 	 * @return ninguno
 	 */
-	public void selecCasas(){
+	public void selecCasas(List<Casa> listaDeCasasSeleccionada){
 		try
 		{
 			logNeg.asignarRecorrido(listaDeCasasSeleccionada);
