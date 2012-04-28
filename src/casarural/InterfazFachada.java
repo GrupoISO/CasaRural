@@ -218,7 +218,13 @@ public interface InterfazFachada extends Remote {
 	 */
 	int[] anularReservas(String[] reservas) throws RemoteException, Exception;
 	
-	
+	/**Comprueba la la validez del administrador
+	 * 
+	 * @param codigo Nombre/Clave del administrador
+	 * @return confirmación cierto/falso
+	 * @throws RemoteException
+	 * @throws Exception
+	 */
 	boolean esAdministrador(String codigo) throws RemoteException, Exception;
 
 	/**Obtencion de la lista de Casas Rurales disponibles actualmente en la BD
