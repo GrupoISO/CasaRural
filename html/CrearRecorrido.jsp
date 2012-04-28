@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crear Recorrido</title>
+<jsp:useBean id="comprobarAdministrador" class="casarural.ReservarCasaBean"></jsp:useBean>
 <link rel="StyleSheet" href="css/base.css" type="text/css">
 <link rel="StyleSheet" href="css/layout.css" type="text/css">
 <link rel="StyleSheet" href="css/skeleton.css" type="text/css">
@@ -13,12 +14,19 @@
 	<div class="container">
 		<h1>Crear Recorrido</h1>
 		<p>Para crear un servicio, debe autenticarse como Administrador</p>
-		<form action="Recorrido.jsp" name="formularioRec" method="post">
+		<form action="CrearRecorrido.jsp" name="formularioRec" method="post">
 			<p>
 				Nombre de Usuario: <input type="text" name="nombre" />
 			</p>
 			<input type="submit" value="Entrar"/>
 		</form>
 	</div>
+	<%
+		String usuario = request.getParameter("nombre");
+		if (usuario != null)
+			if (usuario.equals("alberto")) {
+				response.sendRedirect("Recorrido.jsp");
+			}
+	%>
 </body>
 </html>
