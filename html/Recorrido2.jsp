@@ -27,6 +27,9 @@
 		%>
 		<div id="exito">
 			<h2>Se ha creado el recorrido</h2>
+			<p> Se ha creado el recorrido con las casas seleccionadas satisfactoriamente <p>
+			<input type="button" value="Inicio" onclick="location.href='PantallaInicio.jsp'">
+			<input type="button" value="Volver" onclick="history.back()">
 		</div>
 		<%
 			} else {
@@ -39,6 +42,7 @@
 			<p>En caso de que el problema persista, ponganse en contacto con
 				el administrador del sistema
 			<p>
+			<input type="button" value="Volver" onclick="history.back()">
 		</div>
 		<%
 			}
