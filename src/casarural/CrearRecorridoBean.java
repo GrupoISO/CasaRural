@@ -2,10 +2,13 @@ package casarural;
 
 import java.rmi.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class CrearRecorridoBean {
 	
 	InterfazFachada logNeg;
+	private List<Casa> listaDeCasasSeleccionadas = new ArrayList<Casa>();
+	private int numCasa;
 	
 	/**Constructor de la clase CrearrecorridoBean
 	 * @param ninguno
@@ -35,15 +38,40 @@ public class CrearRecorridoBean {
 		}
 	}
 	
-	/**Inserta un recorrido en la BD con la lista de Casas que toma como paremtro
+	/**Obtener la lista de Casas Seleccionadas
 	 * 
-	 * @param Una lista de casas, que son las que conforma el recorredo que se va a crear
+	 * @return lista de casas seleccionadas
+	 */
+	public List<Casa> getlistaDeCasasSeleccionadas(){
+		return listaDeCasasSeleccionadas;
+	}
+	
+	public void setnumCasa(int numerodecasa){
+		this.numCasa = numerodecasa;
+	}
+	
+	public int getnumCasa(){
+		return (this.numCasa);
+	}
+	
+	/** Añadir un Casa a la lista de Casasas seleccionadas
+	 * 
+	 * @param Un objeto Casa
+	 */
+	public void addCasaSelecionada(){
+		Casa casa = new Casa();
+		casa.setNumCasa(numCasa);
+		listaDeCasasSeleccionadas.add(casa);
+	}
+	
+	/**Inserta un recorrido en la BD con la lista de Casas
+	 * 
 	 * @return ninguno
 	 */
-	public void selecCasas(List<Casa> listaDeCasasSeleccionada){
+	public void selecCasas(){
 		try
 		{
-			logNeg.asignarRecorrido(listaDeCasasSeleccionada);
+			logNeg.asignarRecorrido(listaDeCasasSeleccionadas);
 		}catch(Exception e){
 			e.getStackTrace();
 			System.out.println("Error al intentar crear el recorrido: "+e.toString());

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="casarural.Casa" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -17,13 +18,12 @@
 		<%
 			String select[] = request.getParameterValues("recorrido");
 			if (select != null && select.length != 0) {
-				java.util.List<Casa> listaRecorrido = new java.util.ArrayList<Casa>();
 				for (int i = 0; i < select.length; i++) {
-					Casa casa = new Casa();
-					casa.setNumCasa(Integer.parseInt(select[i]));
-					listaRecorrido.add(casa);
+					int numCasa = (Integer.parseInt(select[i]));
+					crearRecorridoBean.setnumCasa(numCasa);
+					crearRecorridoBean.addCasaSelecionada();
 				}
-				crearRecorridoBean.selecCasas(listaRecorrido);
+				crearRecorridoBean.selecCasas();
 		%>
 		<div id="exito">
 			<h2>Se ha creado el recorrido</h2>
@@ -32,7 +32,7 @@
 			} else {
 		%>
 		<div id="error">
-			<h2>Ha ocurrido un erro</h2>
+			<h2>Ha ocurrido un error</h2>
 			<p>Compruebe que ha seleccionado algún campo al crear el
 				recorrido
 			<p>
