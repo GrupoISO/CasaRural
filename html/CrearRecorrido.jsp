@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crear Recorrido</title>
-<jsp:useBean id="comprobarAdministrador" class="casarural.ReservarCasaBean"></jsp:useBean>
+<jsp:useBean id="comprobarAdministradorBean" class="casarural.ComprobarAdministradorBean"></jsp:useBean>
 <link rel="StyleSheet" href="css/base.css" type="text/css">
 <link rel="StyleSheet" href="css/layout.css" type="text/css">
 <link rel="StyleSheet" href="css/skeleton.css" type="text/css">
@@ -18,15 +18,23 @@
 			<p>
 				Nombre de Usuario: <input type="text" name="nombre" />
 			</p>
-			<input type="submit" value="Entrar"/>
+			<input type="submit" value="Entrar" />
 		</form>
-	</div>
-	<%
-		String usuario = request.getParameter("nombre");
-		if (usuario != null)
-			if (usuario.equals("alberto")) {
-				response.sendRedirect("Recorrido.jsp");
+		<%
+			String usuario = request.getParameter("nombre");
+			if (usuario != null)
+				if (comprobarAdministradorBean.esAdministrador(usuario)) {
+					response.sendRedirect("Recorrido.jsp");
+				} else {
+		%>
+		<div id="error" style="color:red;">
+			<p>
+				<b>Administrador no valido!</b>
+			<p>
+		</div>
+		<%
 			}
-	%>
+		%>
+	</div>
 </body>
 </html>

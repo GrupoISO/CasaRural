@@ -228,7 +228,13 @@ public class ClaseFachada extends UnicastRemoteObject implements
 		return elGestorReservas.anularReservas(reservas);
 	}
 
-	
+	/**Comprueba la la validez del administrador
+	 * 
+	 * @param codigo Nombre/Clave del administrador
+	 * @return confirmación cierto/falso
+	 * @throws RemoteException
+	 * @throws Exception
+	 */
 	public boolean esAdministrador(String codigo) throws RemoteException, Exception {
 		return elGestorAdministrador.esAdministrador(codigo);
 	}
