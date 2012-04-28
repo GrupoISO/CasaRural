@@ -21,7 +21,6 @@
 		<p>Seleccione las casas rurales que forman parte del recorrido que
 			quiere crear</p>
 		<form>
-		<% crearRecorridoBean.getCasas(); %>
 			<div id="tablaCasas" class="zebra-striped">
 				<table>
 					<thead>
@@ -34,15 +33,18 @@
 					</thead>
 					<tbody>
 						<%
-							for (int index = 0; index < crearRecorridoBean.getCasas().size(); index++) {
+							if (crearRecorridoBean.getCasas() != null){
+								List<Casa> lista = crearRecorridoBean.getCasas();
+								for (Casa casa: lista) {
 						%>
 						<tr>
-							<td>23</td>
-							<td>Yo</td>
-							<td>Donostia</td>
-							<td>Checkbox</td>
+							<td><%= casa.getNumCasa() %></td>
+							<td><%= casa.getPropietario() %></td>
+							<td><%= casa.getPoblacion() %></td>
+							<td><input type="checkbox" name="recorrido" value="<%= casa.getNumCasa() %>"></td>
 						</tr>
 						<%
+								}
 							}
 						%>
 					</tbody>
