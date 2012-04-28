@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class CrearRecorridoBean {
 	
 	InterfazFachada logNeg;
-	private List<Casa> listaDeCasasDisponibles;
 	private List<Casa> listaDeCasasSeleccionada = new ArrayList<Casa>();
 	
 	/**Constructor de la clase CrearrecorridoBean
@@ -26,21 +25,23 @@ public class CrearRecorridoBean {
 	 * @param ninguno
 	 * @return Lista de Casas
 	 */
-	public void getCasas(){
+	public List<Casa> getCasas(){
+		List<Casa> listaDeCasasDisponibles = null;
 		try
 		{
-			listaDeCasasDisponibles = logNeg.getCodigoCasas();
+			return listaDeCasasDisponibles = logNeg.getCodigoCasas();
 		}catch(Exception e){
 			e.getStackTrace();
 			System.out.println("Error al conseguir la lista de Casas rurales disponibles: "+e.toString());
+			return listaDeCasasDisponibles;
 		}
 	}
 	
 	/**Obtiene la lista de Casas cargadas en Bean
 	 * 	 * @return listaDeCasas
 	 */
-	public List<Casa> obtenerCasas(){
-		return listaDeCasasDisponibles;
+	public List<Casa> getlistaDeCasasSeleccionada(){
+		return listaDeCasasSeleccionada;
 	}
 	
 	/**Inserta un recorrido en la BD con la lista de Casas que toma como paremtro

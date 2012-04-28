@@ -36,7 +36,7 @@
 					</thead>
 					<tbody>
 						<%
-							for (int index = 0; index < crearRecorridoBean.obtenerCasas().size(); index++) {
+							for (int index = 0; index < crearRecorridoBean.getCasas().size(); index++) {
 						%>
 						<tr>
 							<td>23</td>
