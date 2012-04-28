@@ -20,7 +20,7 @@
 		<h2>Lista de Casas Rurales</h2>
 		<p>Seleccione las casas rurales que forman parte del recorrido que
 			quiere crear</p>
-		<form>
+		<form action="Recorrido2.jsp">
 			<div id="tablaCasas" class="zebra-striped">
 				<table>
 					<thead>
