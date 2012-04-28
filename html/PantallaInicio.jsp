@@ -11,7 +11,7 @@
     <div style="text-align: center;">
     	<h1>Reservar Casas Rurales</h1>
    		<p>
-    		<a href="ReservarCasa.jsp">Reservar Casa Rural</a>
+    		<a type="button" href="ReservarCasa.jsp">Reservar Casa Rural</a>
     		<br>
     		<br>
     		<a href="AsignarDisponibilidad.jsp">Asignar Disponibilidad</a>
@@ -27,6 +27,9 @@
     		<br>
     		<br>
     		<a href="AnularReservas.jsp">Anular Reservas</a>
+    		<br>
+    		<br>
+    		<a href="CrearRecorrido.jsp">Crear Recorrido</a>
     	</p>
     </div>
   </body>
