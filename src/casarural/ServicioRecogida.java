@@ -167,24 +167,24 @@ public class ServicioRecogida extends JFrame {
 		
 		servicio.setFecha(new Date(calendar.getCalendar().getTimeInMillis()));
 		servicio.setNumPlazas(((Long)plazasTextField.getValue()).intValue());
-		servicio.setPrecio(((Double)precioTextField.getValue()).floatValue());
+		servicio.setPrecio(((Long)precioTextField.getValue()).floatValue());
 		servicio.setNumRecogida(((Recogida)recogidasComboBox.getSelectedItem()).getNumRecogida());
 		servicio.setNumRecorrido(((Recorrido)recorridosComboBox.getSelectedItem()).getNumRecorrido());
-		if(((Long)textHora.getValue()).intValue() < 0 || ((Long)textHora.getValue()).intValue() > 23 
+		if(((Integer)textHora.getValue()).intValue() < 0 || ((Integer)textHora.getValue()).intValue() > 23 
 				|| ((Integer)textMin.getValue()).intValue() < 0 || ((Integer)textMin.getValue()).intValue() > 59)
 		{
 			lblError.setText("Formato erroneo: Hora(0..23) Minutos(0..59");
 		}
 		else
 		{
-			servicio.setHora(java.sql.Time.valueOf(((Long)textHora.getValue()).toString() + ":" + ((Integer)textMin.getValue()).toString() + ":00"));
+			servicio.setHora(java.sql.Time.valueOf(((Integer)textHora.getValue()).toString() + ":" + ((Integer)textMin.getValue()).toString() + ":00"));
 			GestorServicio gServicio = GestorServicio.getInstance();
 
 			boolean result = gServicio.crearServicio(servicio);
 
 			if (result) {
-				JOptionPane.showMessageDialog(this, "Se ha guardado con �xito",
-						"�xito al guardar", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Se ha guardado con exito",
+						"exito al guardar", JOptionPane.INFORMATION_MESSAGE);
 				this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(this, "Ha habido un error al guardar",
