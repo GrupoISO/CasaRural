@@ -32,4 +32,14 @@ public class CrearServicioBean {
 		return recorridos;
 	}
 	
+	public List<Recogida> getRecogidas() {
+		List<Recogida> recogidas = null;
+		try {
+			recogidas = logNeg.getRecogidas();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return recogidas;
+	}
+	
 }

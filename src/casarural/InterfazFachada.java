@@ -259,4 +259,6 @@ public interface InterfazFachada extends Remote {
 	
 	
 	public List<Recorrido> getRecorridos() throws RemoteException;
+	
+	public List<Recogida> getRecogidas() throws RemoteException;
 }

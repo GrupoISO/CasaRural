@@ -282,4 +282,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public List<Recorrido> getRecorridos() throws RemoteException {
 		return elGestorRecorrido.getRecorridos();
 	}
+	
+	public List<Recogida> getRecogidas() throws RemoteException {
+		return elGestorServicio.getRecogidas();
+	}
 }
