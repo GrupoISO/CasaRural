@@ -16,7 +16,7 @@
 		<p>Para crear un servicio, debe autenticarse como Administrador</p>
 		<form action="CrearRecorrido.jsp" name="formularioRec" method="post">
 			<p>
-				Nombre de Usuario: <input type="text" name="nombre" />
+				Contraseña: <input type="text" name="nombre" />
 			</p>
 			<input type="submit" value="Entrar" />
 		</form>
@@ -29,7 +29,7 @@
 		%>
 		<div id="error" style="color:red;">
 			<p>
-				<b>Administrador no valido!</b>
+				<b>¡Administrador no válido!</b>
 			<p>
 		</div>
 		<%

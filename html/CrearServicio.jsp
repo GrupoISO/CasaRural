@@ -29,7 +29,7 @@
 		%>
 		<div id="error" style="color:red;">
 			<p>
-				<b>Administrador no valido!</b>
+				<b>¡Administrador no válido!</b>
 			<p>
 		</div>
 		<%
