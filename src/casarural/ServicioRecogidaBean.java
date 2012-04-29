@@ -2,6 +2,9 @@ package casarural;
 
 import java.rmi.*;
 import java.util.List;
+import java.sql.Date;
+import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
 
 public class ServicioRecogidaBean {
 
@@ -21,10 +24,18 @@ public class ServicioRecogidaBean {
 	
 	/**Obtiene una lista formada por los servicios actuales disponibles
 	 * 
+	 * @param numCasa El numero de la Casa Rural, al que estan asociados los servicios
+	 * @param fechaElegida La fecha elegida para la reserva y estaran disponibles los servicios
 	 * @return Una lista, compuesta por la clase Servicio
 	 */
-	public List<Servicio> MostrarServicios(int numCasa, java.sql.Date fecha){
+	public List<Servicio> MostrarServicios(int numCasa, String fechaElegida){
 		try{
+		    StringTokenizer st = new StringTokenizer (fechaElegida,"/");
+		    int dia = Integer.parseInt(st.nextToken());
+		    int mes = Integer.parseInt(st.nextToken()) - 1;
+		    int anio = Integer.parseInt(st.nextToken());
+		    GregorianCalendar gc = new GregorianCalendar(anio,mes,dia);
+		    Date fecha = new Date(gc.getTime().getTime());
 			return logNeg.mostrarServicios(numCasa, fecha);
 		}catch(Exception ex){
 			ex.getStackTrace();
