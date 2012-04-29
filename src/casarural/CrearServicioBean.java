@@ -1,6 +1,7 @@
 package casarural;
 
 import java.rmi.*;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -40,6 +41,16 @@ public class CrearServicioBean {
 			System.out.println(e.getMessage());
 		}
 		return recogidas;
+	}
+	
+	public boolean crearServicio(Servicio servicio) {
+		boolean b = false;
+		try {
+			b = logNeg.crearServicio(servicio);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return b;
 	}
 	
 }

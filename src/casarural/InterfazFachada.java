@@ -4,6 +4,7 @@ import java.rmi.*;
 import java.util.List;
 import java.util.Vector;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /** @author ISO */
 public interface InterfazFachada extends Remote {
@@ -261,4 +262,6 @@ public interface InterfazFachada extends Remote {
 	public List<Recorrido> getRecorridos() throws RemoteException;
 	
 	public List<Recogida> getRecogidas() throws RemoteException;
+	
+	public boolean crearServicio(Servicio servicio) throws RemoteException;
 }

@@ -286,4 +286,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public List<Recogida> getRecogidas() throws RemoteException {
 		return elGestorServicio.getRecogidas();
 	}
+	
+	public boolean crearServicio(Servicio servicio) throws RemoteException {
+		return elGestorServicio.crearServicio(servicio);
+	}
 }
