@@ -29,7 +29,7 @@ public class ComprobarAdministradorBean {
 			return logNeg.esAdministrador(usuario);
 		}catch(Exception e){
 			e.getStackTrace();
-			return true;
+			return false;
 		}
 	}
 
