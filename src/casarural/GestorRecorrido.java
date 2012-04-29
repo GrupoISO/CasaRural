@@ -32,7 +32,7 @@ public class GestorRecorrido {
 	public List<Casa> getCodigoCasas(){
 		List<Casa> listaDeCasas = null;
 		try{
-			listaDeCasas = gbd.seleccionarCasas();
+			listaDeCasas = gbd.obtenerCasas();
 		}catch(Exception e){
 			System.out.println("Error obtiendo la lista de Casas: " + e.getMessage());
 		}
