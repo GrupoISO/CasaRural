@@ -341,3 +341,5 @@
 	.add-bottom { margin-bottom: 20px !important; }
 
 
+	.oculto { display: none; }
+	.error { color: red; }

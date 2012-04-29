@@ -8,7 +8,7 @@ public class CrearServicioBean {
 	
 	InterfazFachada logNeg;
 	
-	/**Constructor de la clase CrearrServicioBean
+	/**Constructor de la clase CrearServicioBean
 	 * @param ninguno
 	 * @return constructor
 	 */
