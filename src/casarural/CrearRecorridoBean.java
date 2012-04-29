@@ -46,10 +46,18 @@ public class CrearRecorridoBean {
 		return listaDeCasasSeleccionadas;
 	}
 	
+	/**Establece el numero de Casa que se quiere incluir posteriormente en la lista
+	 * 
+	 * @param numerodecasa El número de la Casa Rural
+	 */
 	public void setnumCasa(int numerodecasa){
 		this.numCasa = numerodecasa;
 	}
 	
+	/** Obtiene el número de la casa actual, que esta disponible para añadir
+	 * 
+	 * @return
+	 */
 	public int getnumCasa(){
 		return (this.numCasa);
 	}

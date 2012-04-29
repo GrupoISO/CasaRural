@@ -3,6 +3,7 @@ package casarural;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
@@ -23,6 +24,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	GestorAdministrador elGestorAdministrador = GestorAdministrador.getInstance();
 
 	GestorRecorrido elGestorRecorrido = GestorRecorrido.getInstance();
+	
+	GestorServicio elGestorServicio = GestorServicio.getInstance();
 
 	public ClaseFachada() throws RemoteException {
 	}
@@ -243,7 +246,7 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	 * @param ninguno
 	 * @return Una lista de las Casas rurales actuales
 	 */
-	public List<Casa> getCodigoCasas(){
+	public List<Casa> getCodigoCasas() throws RemoteException {
 		return elGestorRecorrido.getCodigoCasas();
 	}
 	
@@ -251,7 +254,16 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	 * @param Una lista de Casas Rurales
 	 * @return confirmacion cierto/falso
 	 */
-	public boolean asignarRecorrido(List<Casa> listaDeCasas){
+	public boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException {
 		return elGestorRecorrido.asignarRecorrido(listaDeCasas);
+	}
+	
+	/**Obtiene una lista de Servicios asignados a una casa rural en la fecha indicada
+	 * 
+	 * @param numCasa Código de la casa rural de la cual se requieren los servicios
+	 * @return listaDeServicios asociados a una casa rural
+	 */
+	public List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException {
+		return elGestorServicio.mostrarServicios(numCasa, fecha);
 	}
 }

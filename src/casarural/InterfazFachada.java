@@ -238,4 +238,12 @@ public interface InterfazFachada extends Remote {
 	 * @return confirmacion cierto/falso
 	 */
 	boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException;
+	
+	
+	/**Obtiene una lista de Servicios asignados a una casa rural en la fecha indicada
+	 * 
+	 * @param numCasa Código de la casa rural de la cual se requieren los servicios
+	 * @return listaDeServicios asociados a una casa rural
+	 */
+	List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException;
 }
