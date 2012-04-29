@@ -23,7 +23,7 @@
   </head>
   <body>
 	<div class="container">
-		<form action="AceptarReserva.jsp" name="formulario" method="post">
+		<form action="ReservarCasaServicio.jsp" name="formulario" method="post">
 			<h1>Reservar Casa Rural</h1>
 			<P>
 				Codigo de la casa: &nbsp;&nbsp;&nbsp;
@@ -31,9 +31,9 @@
 				<input type="text" name="numCasa" value=<%= casa %>>
 			</P>
 			<P>
-				Dia de entrada: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Dia de entrada: (dd/mm/aaaa) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<%String fecha=request.getParameter("diaIni");%>
-				<input type="text" name="diaIni" value=<%= fecha %>>(dd/mm/aaaa)
+				<input type="text" name="diaIni" value=<%= fecha %>>
 			</P>
 			<P>
 				Numero de noches: &nbsp;&nbsp;
@@ -45,7 +45,7 @@
 			</P>
 			<p>
 				Si es posible, ¿Desea utilizar un servicio de recogida?
-				<select id="servicio">
+				<select id="servicio" name="servicio">
 					<option value="no">No</option>
 					<option value="si">Si</option>
 				</select>

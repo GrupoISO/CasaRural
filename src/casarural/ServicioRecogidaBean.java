@@ -2,6 +2,7 @@ package casarural;
 
 import java.rmi.*;
 import java.util.List;
+import java.util.ArrayList;
 import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
@@ -40,6 +41,24 @@ public class ServicioRecogidaBean {
 		}catch(Exception ex){
 			ex.getStackTrace();
 			return null;
+		}
+	}
+	
+	/**Crea una reserva y asigna un servicio a la misma
+	 *
+	 * @param Reserva La reserva que se va a crear 
+	 * @param idServicio Identificador del servicio que se asignara a la reserva
+	 * @param numPlazas Numero de plazas que se quiere reservar
+	 * @return
+	 */
+	public boolean transaccionDeReserva(Oferta reserva, String numTfno, int idServicio, int numPlazas){
+		try{
+			List<Oferta> reservasTotales = new ArrayList<Oferta>();
+			reservasTotales.add(reserva);
+			return logNeg.transaccionDeReserva(reservasTotales, numTfno, idServicio, numPlazas);
+		}catch(Exception ex){
+			ex.getStackTrace();
+			return false;
 		}
 	}
 }

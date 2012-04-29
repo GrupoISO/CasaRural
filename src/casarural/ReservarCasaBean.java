@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
+import com.sun.tools.internal.ws.processor.model.Request;
+
 public class ReservarCasaBean 
 {
   InterfazFachada logNeg;

@@ -246,4 +246,14 @@ public interface InterfazFachada extends Remote {
 	 * @return listaDeServicios asociados a una casa rural
 	 */
 	List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException;
+	
+	
+	/**Crea una reserva y asigna un servicio a la misma
+	 *
+	 * @param 
+	 * @param idServicio Identificador del servicio que se asignara a la reserva
+	 * @param numPlazas Numero de plazas que se quiere reservar
+	 * @return
+	 */
+	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException;
 }
