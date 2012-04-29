@@ -28,7 +28,7 @@
 							<th>Número Casa</th>
 							<th>Propietario</th>
 							<th>Población</th>
-							<th><b>Añadir</b></th>
+							<th><strong>Añadir</strong></th>
 						</tr>
 					</thead>
 					<tbody>

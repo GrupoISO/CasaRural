@@ -277,4 +277,9 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException {
 		return elGestorServicio.transaccionDeReserva(reservasTotales, numTfno, idServicio, numPlazas);
 	}
+	
+	
+	public List<Recorrido> getRecorridos() throws RemoteException {
+		return elGestorRecorrido.getRecorridos();
+	}
 }

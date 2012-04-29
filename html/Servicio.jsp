@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
+<%@ page import="casarural.Recorrido" %>
 <%@ page import="casarural.CrearServicioBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -107,8 +108,14 @@
 			<p>
 				Recorrido:
 				<select id="recorrido" name="recorrido">
-					<option value="1">1</option>
-					<option value="2">2</option>
+					<%
+						List<Recorrido> lista = crearServicioBean.getRecorridos();
+						for (Recorrido r: lista) {
+					%>
+					<option value="<%= r.getNumRecorrido() %>"><%= r.getNumRecorrido() %></option>
+					<%
+						}
+					%>
 				</select>
 			</p>
 			<p>

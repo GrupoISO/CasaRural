@@ -256,4 +256,7 @@ public interface InterfazFachada extends Remote {
 	 * @return
 	 */
 	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException;
+	
+	
+	public List<Recorrido> getRecorridos() throws RemoteException;
 }
