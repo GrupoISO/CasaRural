@@ -266,4 +266,15 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	public List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException {
 		return elGestorServicio.mostrarServicios(numCasa, fecha);
 	}
+	
+	/**Crea una reserva y asigna un servicio a la misma
+	 *
+	 * @param 
+	 * @param idServicio Identificador del servicio que se asignara a la reserva
+	 * @param numPlazas Numero de plazas que se quiere reservar
+	 * @return
+	 */
+	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException {
+		return elGestorServicio.transaccionDeReserva(reservasTotales, numTfno, idServicio, numPlazas);
+	}
 }
