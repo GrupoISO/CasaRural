@@ -10,7 +10,7 @@ public class CrearRecorridoBean {
 	private List<Casa> listaDeCasasSeleccionadas = new ArrayList<Casa>();
 	private int numCasa;
 	
-	/**Constructor de la clase CrearrecorridoBean
+	/**Constructor de la clase CrearRecorridoBean
 	 * @param ninguno
 	 * @return constructor
 	 */
