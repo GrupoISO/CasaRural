@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=windows-1252"%>
+<%@ page import="java.util.List" %>
+<%@ page import="casarural.Servicio" %>
 <html>
   <head>
   <script type="text/javascript">
@@ -42,14 +44,14 @@
 				Telefono de contacto: <input type="text" name="numTfnoReserva" />
 			</P>
 			<p>
-				¿Quiere utilizar un servicio de recogida?
+				Si es posible, ¿Desea utilizar un servicio de recogida?
 				<select id="servicio">
-					<option>No</option>
+					<option value="no">No</option>
+					<option value="si">Si</option>
 				</select>
 			</p>
 			<input value="Aceptar" type="SUBMIT" onclick="checkValues()" />
 			<input value="Cancelar" type="BUTTON" onclick="history.back()" />
-			</P>
 		</form>
 	</div>
 </body>
