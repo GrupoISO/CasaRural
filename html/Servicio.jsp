@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
-<%@ page import="casarural.Casa" %>
 <%@ page import="casarural.CrearServicioBean" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,9 +14,7 @@
 	<script type="text/javascript">
 		<!--
 		function validar() {
-			/*if (document.formulario.numCasa.value < 0)
-				alert('El numero de casa tiene que ser mayor que cero');*/
-			return true;
+			return cfecha() && chora() && cprecio() && cplazas();
 		}
 		function error(elem, b) {
 			if (b)
@@ -48,52 +45,80 @@
 				b = b && es_digito(input[i]);
 			return b;
 		}
-		function comprobarFecha() {
+		function cfecha() {
 			var a = document.getElementById("fecha").value;
 			var b = a.length == 10 && a[4] == '/' && a[7] == '/' && es_num(a.substring(0,4))
 					&& es_num(a.substring(5,7)) && es_num(a.substring(8,10))
-					&& a.substring(5,7) <= 12 && a.substring(8,10) <= 31;
+					&& a.substring(5,7) >= 1 && a.substring(5,7) <= 12
+					&& a.substring(8,10) >= 1 && a.substring(8,10) <= 31;
 			error("fecha", !b);
+			return b;
+		}
+		function chora() {
+			var a = document.getElementById("hora").value;
+			var b = a.length == 5 && a[2] == ':'
+					&& es_num(a.substring(0,2)) && es_num(a.substring(3,5))
+					&& a.substring(0,2) < 24 && a.substring(3,5) < 60;
+			error("hora", !b);
+			return b;
+		}
+		function cprecio() {
+			var a = document.getElementById("precio").value;
+			var b = a.length > 0;
+			var n = a.indexOf(".");
+			if (n == -1) b = b && es_num(a);
+			else b = b && es_num(a.substring(0,n)) && es_num(a.substring(n+1));
+			error("precio", !b);
+			return b;
+		}
+		function cplazas() {
+			var a = document.getElementById("plazas").value;
+			var b = a.length > 0 && es_num(a);
+			error("plazas", !b);
+			return b;
 		}
 		-->
 	</script>
 </head>
 <body>
 	<div class="container">
-		<form action="Servicio2.jsp" name="f" method="post">
+		<form action="Servicio2.jsp" name="f" method="post" onSubmit="return validar();">
 			<h1>Crear Servicio de Recogida</h1>
 			<p>
 				Fecha (aaaa/mm/dd):
-				<span id="error_fecha" class="oculto">Prueba</span>
-				<input type="text" id="fecha" onBlur="comprobarFecha();" />
+				<span id="error_fecha" class="oculto">Dato incorrecto</span>
+				<input type="text" id="fecha" name="fecha" onBlur="cfecha()" />
 			</p>
 			<p>
-				Hora (hh:mm): 
-				<input type="text" name="hora" />
+				Hora (hh:mm):
+				<span id="error_hora" class="oculto">Dato incorrecto</span>
+				<input type="text" id="hora" name="hora" onBlur="chora()" />
 			</p>
 			<p>
-				Precio: 
-				<input type="text" name="precio" />
+				Precio:
+				<span id="error_precio" class="oculto">Dato incorrecto</span>
+				<input type="text" id="precio" name="precio" onBlur="cprecio()" />
 			</p>
 			<p>
-				Plazas: 
-				<input type="text" name="plazas" />
+				Plazas:
+				<span id="error_plazas" class="oculto">Dato incorrecto</span>
+				<input type="text" id="plazas" name="plazas" onBlur="cplazas()" />
 			</p>
 			<p>
 				Recorrido:
-				<select id="recorrido">
+				<select id="recorrido" name="recorrido">
 					<option value="1">1</option>
 					<option value="2">2</option>
 				</select>
 			</p>
 			<p>
 				Recogida:
-				<select id="recogida">
+				<select id="recogida" name="recogida">
 					<option value="1">Aeropuerto de Loiu</option>
 					<option value="2">Estación de Amara</option>
 				</select>
 			</p>
-			<input value="Crear Servicio" type="submit" onclick="validar()" />
+			<input value="Crear Servicio" type="submit" />
 			<input value="Cancelar" type="button" onclick="location.href='./'" />
 		</form>
 	</div>
