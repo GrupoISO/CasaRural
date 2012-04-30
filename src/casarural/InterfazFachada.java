@@ -270,9 +270,24 @@ public interface InterfazFachada extends Remote {
 	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws RemoteException, NoSePuedeReservarException;
 	
 	
+	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
+	 * @param ninguno
+	 * @return Una lista de recorridos
+	 */
 	public List<Recorrido> getRecorridos() throws RemoteException;
 	
+	
+	/**Obtiene una lista de las recogidas actuales
+	 * @param ninguno
+	 * @return Una lista de recogidas
+	 */
 	public List<Recogida> getRecogidas() throws RemoteException;
 	
+	
+	/**Crea un Servicio asignandolo a un recorrido
+	 * 
+	 * @param servicio Toma como entrada la clase Servicio
+	 * @return confirmación true/false
+	 */
 	public boolean crearServicio(Servicio servicio) throws RemoteException;
 }

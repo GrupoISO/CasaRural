@@ -294,15 +294,27 @@ public class ClaseFachada extends UnicastRemoteObject implements
 		return elGestorServicio.transaccionDeReserva(oferta, numTfno, idServicio, numPlazas);
 	}
 	
-	
+	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
+	 * @param ninguno
+	 * @return Una lista de recorridos
+	 */
 	public List<Recorrido> getRecorridos() throws RemoteException {
 		return elGestorRecorrido.getRecorridos();
 	}
 	
+	/**Obtiene una lista de las recogidas actuales
+	 * @param ninguno
+	 * @return Una lista de recogidas
+	 */
 	public List<Recogida> getRecogidas() throws RemoteException {
 		return elGestorServicio.getRecogidas();
 	}
 	
+	/**Crea un Servicio asignandolo a un recorrido
+	 * 
+	 * @param servicio Toma como entrada la clase Servicio
+	 * @return confirmación true/false
+	 */
 	public boolean crearServicio(Servicio servicio) throws RemoteException {
 		return elGestorServicio.crearServicio(servicio);
 	}

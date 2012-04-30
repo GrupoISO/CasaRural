@@ -776,6 +776,11 @@ public final class GestorBD {
 		return result == 1;
 	}
 	
+	/**
+	 * Obtiene el precio de una plaza en el servicio de recogida que se le indique por parámetro
+	 * @param numServicio número identificador del servicio de recogida
+	 * @return el precio asociado a una plaza en dicho servicio de recogida
+	 */
 	public float precioServicio(int numServicio) {
 		float precio = 0.0f;
 		try {

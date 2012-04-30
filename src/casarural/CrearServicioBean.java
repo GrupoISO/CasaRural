@@ -23,6 +23,10 @@ public class CrearServicioBean {
 	    catch(Exception e) {System.out.println("Error al conseguir la logica del negocio: "+e.toString());}
 	}
 	
+	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
+	 * @param ninguno
+	 * @return Una lista de recorridos
+	 */
 	public List<Recorrido> getRecorridos() {
 		List<Recorrido> recorridos = null;
 		try {
@@ -33,6 +37,10 @@ public class CrearServicioBean {
 		return recorridos;
 	}
 	
+	/**Obtiene una lista de las recogidas actuales
+	 * @param ninguno
+	 * @return Una lista de recogidas
+	 */
 	public List<Recogida> getRecogidas() {
 		List<Recogida> recogidas = null;
 		try {
@@ -43,6 +51,11 @@ public class CrearServicioBean {
 		return recogidas;
 	}
 	
+	/**Crea un Servicio asignandolo a un recorrido
+	 * 
+	 * @param servicio Toma como entrada la clase Servicio
+	 * @return confirmación true/false
+	 */
 	public boolean crearServicio(Servicio servicio) {
 		boolean b = false;
 		try {
