@@ -62,9 +62,9 @@ public class ReservarCasaBean
   {
     diaIni=i;
     StringTokenizer st = new StringTokenizer (i,"/");
-    int dia = Integer.parseInt(st.nextToken());
-    int mes = Integer.parseInt(st.nextToken()) - 1;
     int anio = Integer.parseInt(st.nextToken());
+    int mes = Integer.parseInt(st.nextToken()) - 1;
+    int dia = Integer.parseInt(st.nextToken());
     GregorianCalendar gc = new GregorianCalendar(anio,mes,dia);
     diaIniDate = new Date(gc.getTime().getTime());
     
@@ -111,7 +111,6 @@ public class ReservarCasaBean
  /**Devuelve una reserva realizada con los datos introducidos
   *@param Ninguno
   *@return La reserva
-		<p>
   */
   public Reserva getResultado()
   {
