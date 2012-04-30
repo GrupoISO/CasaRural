@@ -26,7 +26,7 @@
 			String select = request.getParameter("servicio");
 			if (select != null && select.equals("si")) {
 				List<Servicio> listaServicios =
-						servicioRecogidaBean.MostrarServicios(reservarCasaBean.getNumCasa(), reservarCasaBean.getDiaIni());
+						servicioRecogidaBean.MostrarServicios(reservarCasaBean.getNumCasa(), reservarCasaBean.getDiaIniDate());
 				if (!listaServicios.isEmpty()) {
 		%>
 		<p>Puede elegir un servicio, entre los disponibles asignados a la casa rural que ha elegido.</p>

@@ -11,8 +11,8 @@ public class ReservarCasaBean
   InterfazFachada logNeg;
   private int numCasa;
   private String diaIni;
-  private Date diaIniDate;
-  private Date diaFinDate;
+  private java.sql.Date diaIniDate;
+  private java.sql.Date diaFinDate;
   private int numNoches;
   private long numNochesM;
   private String numTfnoReserva;
@@ -54,6 +54,14 @@ public class ReservarCasaBean
   {
     return diaIni;
   }
+  /**Devuelve el dia de inicio de la reserva
+  *@param Ninguno
+  *@return El dia de inicio de la reserva
+  */
+  public java.sql.Date getDiaIniDate ()
+  {
+    return diaIniDate;
+  }
   /**Asigna el dia de fin de la reserva al de la instancia actual
   *@param El dia de fin de la reserva
   *@return Ninguno
@@ -66,7 +74,7 @@ public class ReservarCasaBean
     int mes = Integer.parseInt(st.nextToken()) - 1;
     int dia = Integer.parseInt(st.nextToken());
     GregorianCalendar gc = new GregorianCalendar(anio,mes,dia);
-    diaIniDate = new Date(gc.getTime().getTime());
+    diaIniDate = new java.sql.Date(gc.getTime().getTime());
     
     System.out.println("diaIni set to "+ diaIni);
     System.out.println("diaIniDate set to "+ diaIniDate.toString());
@@ -114,15 +122,15 @@ public class ReservarCasaBean
   */
   public Reserva getResultado()
   {
-    Reserva res = null;
-    try
-    {
-      diaFinDate = new Date(diaIniDate.getTime()+numNochesM);
-      res = logNeg.reservar(diaIniDate, diaFinDate, numCasa, numTfnoReserva);
-    }
-    catch (Exception e) {System.out.println("Error: "+e.toString());
-                         e.printStackTrace();}
-    return res;
+	Reserva res = null;
+	try {
+		diaFinDate = new java.sql.Date(diaIniDate.getTime()+numNochesM);
+		res = logNeg.reservar(diaIniDate, diaFinDate, numCasa, numTfnoReserva);
+	} catch (Exception e) {
+		System.out.println("Error: "+e.toString());
+		e.printStackTrace();
+	}
+	return res;
   }
  
 }
