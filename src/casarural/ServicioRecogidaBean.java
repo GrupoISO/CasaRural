@@ -53,9 +53,9 @@ public class ServicioRecogidaBean {
 	 */
 	public boolean transaccionDeReserva(Oferta reserva, String numTfno, int idServicio, int numPlazas){
 		try{
-			List<Oferta> reservasTotales = new ArrayList<Oferta>();
-			reservasTotales.add(reserva);
-			return logNeg.transaccionDeReserva(reservasTotales, numTfno, idServicio, numPlazas);
+//			List<Oferta> reservasTotales = new ArrayList<Oferta>();
+//			reservasTotales.add(reserva);
+			return logNeg.transaccionDeReserva(reserva, numTfno, idServicio, numPlazas);
 		}catch(Exception ex){
 			ex.getStackTrace();
 			return false;

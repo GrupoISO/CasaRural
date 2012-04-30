@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -103,14 +104,50 @@ public class GestorServicio {
 	 * @param numPlazas Numero de plazas que se quiere reservar
 	 * @return
 	 */
-	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas){
+	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws casarural.NoSePuedeReservarException {
+		// preguntar el vector de las ofertas dentro de las fechas
+				// (diaIni-diaFin)
+				// si no existen catch la exception
+				List<Oferta> ofertas = new ArrayList<Oferta>();
+				OfertasEnMemoriaPrincipal oferts = new OfertasEnMemoriaPrincipal();
+				try {
+					ofertas = gbd.seleccionarReservas(oferta.getDiaIni(), oferta.getDiaFin(), oferta.getNumCasa());
+				} catch (NoSePuedeReservarException ex) {
+					throw ex;
+				} catch (Exception exc) {
+					exc.printStackTrace();
+				}
+
+				// a�adir todas las ofertas en la memoria principal
+				for (Oferta next: ofertas) {
+					String numOferta = next.getNumOferta();
+					java.sql.Date diaIniOtro = next.getDiaIni();
+					java.sql.Date diaFinOtro = next.getDiaFin();
+					float precio = next.getPrecio();
+					oferts.anadirReserva(diaIniOtro, diaFinOtro, numOferta, precio);
+				}
+
+				// preguntar de volver el vector de la reservaCompleta
+				// sino existe catch la excepcion
+				List<ReservaCompleta> resCompleta = new ArrayList<ReservaCompleta>();
+				try {
+					resCompleta = oferts.obtenerReservaCompleta(oferta.getDiaIni(), oferta.getDiaFin());
+				} catch (NoSePuedeReservarException ex) {
+					throw ex;
+				}
+
+				// c�lculo del precio total
+				float precio = 0.0f;
+				List<String> reservasTotales = new ArrayList<String>();
+				for (ReservaCompleta next: resCompleta) {
+					reservasTotales.add(next.getNumOferta());
+					precio = precio + next.getPrecio();
+				}
 		try {
 			int idReserva = cargarNumReserva() + 1;
-			float precioTotal = 0;
-			for(Oferta reservaOferta: reservasTotales){
-				precioTotal = precioTotal + reservaOferta.getPrecio();
-			}
-			gbd.transaccionDeReserva(reservasTotales, idReserva, numTfno, precioTotal, idServicio, numPlazas);
+			List<Oferta> listaUnaOferta = new ArrayList<Oferta>();
+			listaUnaOferta.add(oferta);
+			gbd.transaccionDeReserva(listaUnaOferta, idReserva, numTfno, precio, idServicio, numPlazas);
 			salvarNumReserva(idReserva);
 			return true;
 		}

@@ -112,12 +112,16 @@ public class GestorServicioTest extends TestCase {
 		oferta.setNumCasa(1);
 		oferta.setNumOferta("123");
 		
-		List<Oferta> listaDeUnareserva = new ArrayList<Oferta>();
-		listaDeUnareserva.add(oferta);
+//		List<Oferta> listaDeUnareserva = new ArrayList<Oferta>();
+//		listaDeUnareserva.add(oferta);
 		
 		//Crearemos una reserva de prueba y tomaremos la confirmación del GestorBtD
-		boolean estado = gs.transaccionDeReserva(listaDeUnareserva,"943000000", 1, 5);
-		assertTrue(estado);
+		try{
+			boolean estado = gs.transaccionDeReserva(oferta,"943000000", 1, 5);
+			assertTrue(estado);
+		}catch(NoSePuedeReservarException ex){
+			fail();
+		}
 	}
 
 }

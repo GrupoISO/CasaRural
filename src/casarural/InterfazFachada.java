@@ -256,7 +256,7 @@ public interface InterfazFachada extends Remote {
 	 * @param numPlazas Numero de plazas que se quiere reservar
 	 * @return
 	 */
-	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException;
+	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws RemoteException, NoSePuedeReservarException;
 	
 	
 	public List<Recorrido> getRecorridos() throws RemoteException;

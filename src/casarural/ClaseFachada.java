@@ -274,8 +274,8 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	 * @param numPlazas Numero de plazas que se quiere reservar
 	 * @return
 	 */
-	public boolean transaccionDeReserva(List<Oferta> reservasTotales, String numTfno, int idServicio, int numPlazas) throws RemoteException {
-		return elGestorServicio.transaccionDeReserva(reservasTotales, numTfno, idServicio, numPlazas);
+	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws RemoteException, NoSePuedeReservarException {
+		return elGestorServicio.transaccionDeReserva(oferta, numTfno, idServicio, numPlazas);
 	}
 	
 	
