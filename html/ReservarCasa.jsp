@@ -15,7 +15,6 @@
   </script>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Reservar casa</title>
-    <jsp:useBean id="mejorOfertaBean" scope="request" class="casarural.MejorOfertaBean"/>
 	<jsp:useBean id="servicioRecogidaBean" scope="request" class="casarural.ServicioRecogidaBean"></jsp:useBean>
     <link rel="StyleSheet" href="css/base.css" type="text/css">
 	<link rel="StyleSheet" href="css/layout.css" type="text/css">
@@ -28,17 +27,17 @@
 			<P>
 				Codigo de la casa: &nbsp;&nbsp;&nbsp;
 				<%String casa=request.getParameter("numCasa");%>
-				<input type="text" name="numCasa" value=<%= casa %>>
+				<input type="text" name="numCasa" value=<%= casa %> required>
 			</P>
 			<P>
 				Dia de entrada: (dd/mm/aaaa) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<%String fecha=request.getParameter("diaIni");%>
-				<input type="text" name="diaIni" value=<%= fecha %>>
+				<input type="text" name="diaIni" value=<%= fecha %> required>
 			</P>
 			<P>
 				Numero de noches: &nbsp;&nbsp;
 				<%String numnoches=request.getParameter("numNoches");%>
-				<input type="text" name="numNoches" value=<%= numnoches %>>
+				<input type="text" name="numNoches" value=<%= numnoches %> required>
 			</P>
 			<P>
 				Telefono de contacto: <input type="text" name="numTfnoReserva" />

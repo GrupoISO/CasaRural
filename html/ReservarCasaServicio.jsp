@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
+<%@ page import="casarural.Oferta" %>
 <%@ page import="casarural.Servicio" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,13 +42,14 @@
 				<table>
 					<thead>
 						<tr>
-							<th>Numero Servicio</th>
+							<th>Servicio</th>
 							<th>Horario</th>
-							<th>Num Plazas</th>
+							<th>Número de Plazas</th>
 							<th>Precio</th>
-							<th>Num Plazas Reservadas</th>
-							<th>Num Recorrido</th>
+							<th>Número de Plazas Reservadas</th>
+							<th>Recorrido</th>
 							<th><b><u>Elegir Servicio</u></b></th>
+							<th><b><u>Eliga Número de Plazas</u></b>
 						</tr>
 					</thead>
 					<tbody>
@@ -61,8 +63,16 @@
 							<td><%=servicio.getPrecio()%></td>
 							<td><%=servicio.getNumPlazasReservadas()%>
 							<td><%=servicio.getNumRecorrido()%></td>
-							<td><input type="radio" name="servicio"
+							<td><input type="radio" name="idservicio"
 								value="<%=servicio.getNumServicio()%>" /></td>
+							<td>
+								<select name="plazas">
+									<% 	int i;
+										int plazaslibres = (servicio.getNumPlazas()-servicio.getNumPlazasReservadas());
+										for (i=1; i<=plazaslibres; i++){
+									%><option value=<%=i%>><%=i%></option><% } %>
+								</select>
+							</td>
 						</tr>
 						<%
 							}
