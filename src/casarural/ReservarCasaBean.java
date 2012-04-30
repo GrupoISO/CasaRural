@@ -12,7 +12,6 @@ public class ReservarCasaBean
   private int numCasa;
   private String diaIni;
   private Date diaIniDate;
-  private String diaFin;
   private Date diaFinDate;
   private int numNoches;
   private long numNochesM;
@@ -112,6 +111,7 @@ public class ReservarCasaBean
  /**Devuelve una reserva realizada con los datos introducidos
   *@param Ninguno
   *@return La reserva
+		<p>
   */
   public Reserva getResultado()
   {

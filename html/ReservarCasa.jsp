@@ -118,7 +118,7 @@
 				<% } %>
 			</p>
 			<p>
-				Si es posible, ¿desea utilizar un servicio de recogida?
+				Si es posible, ¿desea contratar un servicio de recogida?
 				<select id="servicio" name="servicio">
 					<option value="no">No</option>
 					<option value="si">Sí</option>
