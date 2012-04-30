@@ -775,4 +775,16 @@ public final class GestorBD {
 		
 		return result == 1;
 	}
+	
+	public float precioServicio(int numServicio) {
+		float precio = 0.0f;
+		try {
+			String consulta = "SELECT Precio FROM Servicio WHERE NumServicio = " + numServicio;
+			ResultSet rs = s.executeQuery(consulta);
+			if (rs.next()) precio = rs.getFloat(1);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return precio;
+	}
 }

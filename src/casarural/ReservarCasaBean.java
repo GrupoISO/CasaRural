@@ -132,5 +132,22 @@ public class ReservarCasaBean
 	}
 	return res;
   }
+  
+  /**Devuelve una reserva realizada con los datos introducidos
+   *@param numero de servicio, y numero de plazas reservadas
+   *@return La reserva
+   */
+   public Reserva getResultado(int idServicio, int plazas)
+   {
+ 	Reserva res = null;
+ 	try {
+ 		diaFinDate = new java.sql.Date(diaIniDate.getTime()+numNochesM);
+ 		res = logNeg.reservar(diaIniDate, diaFinDate, numCasa, numTfnoReserva, idServicio, plazas);
+ 	} catch (Exception e) {
+ 		System.out.println("Error: "+e.toString());
+ 		e.printStackTrace();
+ 	}
+ 	return res;
+   }
  
 }

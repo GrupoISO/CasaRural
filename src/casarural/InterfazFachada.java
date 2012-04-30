@@ -159,6 +159,17 @@ public interface InterfazFachada extends Remote {
 	Reserva reservar(java.sql.Date diaIni, java.sql.Date diaFin, int numCasa,
 			String numTfnoReserva) throws RemoteException,
 			NoSePuedeReservarException;
+	
+	/**
+	 * Realiza la reserva
+	 * 
+	 * @param Dia
+	 *            inicio, dia fin, numero de casa, telefono, numero de servicio, numero de plazas
+	 * @return la reserva
+	 */
+	Reserva reservar(java.sql.Date diaIni, java.sql.Date diaFin, int numCasa,
+			String numTfnoReserva, int idServicio, int plazas) throws RemoteException,
+			NoSePuedeReservarException;
 
 	/**
 	 * Obtener el numero de cuenta corriente a partir de una casa

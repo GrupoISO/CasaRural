@@ -140,6 +140,22 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	}
 
 	/**
+	 * Devuelve la reserva vinculada a los parametros de entrada
+	 * 
+	 * @param El
+	 *            codigo de la casa, dia de inicio, dia de fin, el numero de
+	 *            telefono, el servicioi contratado, y las plazas reservadas en dicho servicio
+	 * @return La reserva
+	 */
+	public Reserva reservar(Date diaIni, Date diaFin, int numCasa,
+			String numTfnoReserva, int idServicio, int plazas) throws RemoteException,
+			NoSePuedeReservarException {
+
+		return elGestorReservas.reservar(diaIni, diaFin, numCasa,
+				numTfnoReserva, idServicio, plazas);
+	}
+	
+	/**
 	 * Devuelve el numero de cuenta corriente asociada a la casa
 	 * 
 	 * @param El

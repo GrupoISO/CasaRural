@@ -59,13 +59,13 @@
 							<td><input type="radio" name="idservicio"
 								value="<%=servicio.getNumServicio()%>" /></td>
 							<td>
-								<select name="plazas">
+								<select name='plazas<%=servicio.getNumServicio()%>'>
 									<%
 						int i;
 						int plazaslibres = (servicio.getNumPlazas()-servicio.getNumPlazasReservadas());
 						for (i=1; i<=plazaslibres; i++) {
 									%>
-									<option value='<%= i %>'><%= i %></option>
+									<option value='<%=i%>'><%=i%></option>
 									<%
 						}
 									%>
