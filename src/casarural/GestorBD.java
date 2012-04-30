@@ -640,7 +640,7 @@ public final class GestorBD {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		String consulta = "SELECT S.NumServicio, DATE(S.Fecha) AS Fecha, TIME(S.Fecha) AS Hora, S.NumRecogida, S.NumPlazas, S.Precio, S.NumPlazasReservadas, S.NumRecorrido, R.Tipo, R.Direccion, R.Nombre "
 				+ "FROM (Servicio AS S INNER JOIN CasaRural_Recorrido AS C ON S.NumRecorrido = C.Recorrido_NumRecorrido) INNER JOIN Recogida as R ON S.NumRecogida = R.NumRecogida "
-				+ "WHERE C.CasaRural_NumCasa = " + codCasa + " AND DATE(S.Fecha) = \"" + fecha + "\"";
+				+ "WHERE C.CasaRural_NumCasa = " + codCasa + " AND DATE(S.Fecha) = \"" + fecha + "\" AND S.NumPlazasreservadas < S.NumPlazas";
 		ResultSet rs = s.executeQuery(consulta);
 		while (rs.next()) {
 			Servicio serv = new Servicio();
