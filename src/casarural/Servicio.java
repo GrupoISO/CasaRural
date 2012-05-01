@@ -202,7 +202,7 @@ public class Servicio implements Serializable {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("Servicio ");
-		builder.append(numRecorrido);
+		builder.append(numServicio);
 		builder.append(": ");
 		builder.append(fecha);
 		builder.append(" ");
