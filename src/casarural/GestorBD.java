@@ -792,4 +792,13 @@ public final class GestorBD {
 		}
 		return precio;
 	}
+
+	public boolean comprobarAdministrador(String codigo) throws SQLException {
+		PreparedStatement prstd = c.prepareStatement("SELECT Codigo FROM administradores WHERE Codigo = ?");
+		prstd.setString(1, codigo);
+		
+		ResultSet set = prstd.executeQuery();
+		
+		return set.next();
+	}
 }

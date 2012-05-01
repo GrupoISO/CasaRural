@@ -1,8 +1,11 @@
 package casarural;
 
+import java.sql.SQLException;
+
 public class GestorAdministrador {
-	private static String contrasenya = "alberto";
 	private static GestorAdministrador gestorAdministrador;
+	
+	private GestorBD gBd;
 	
 	public static GestorAdministrador getInstance() {
 		if (gestorAdministrador == null) {
@@ -12,9 +15,16 @@ public class GestorAdministrador {
 		return gestorAdministrador;
 	}
 	
-	private GestorAdministrador() {}
+	private GestorAdministrador() {
+		gBd = GestorBD.getInstance();
+	}
 	
 	public boolean esAdministrador(String codigo) {
-		return codigo.equals(contrasenya);
+		try {
+			return gBd.comprobarAdministrador(codigo);
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 }
