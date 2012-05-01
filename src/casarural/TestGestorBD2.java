@@ -1,5 +1,6 @@
 package casarural;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
@@ -228,5 +229,18 @@ public class TestGestorBD2 extends TestCase {
 		} catch (Exception e) {
 			assertTrue(true);
 		}
+	}
+	
+	public void test_precioServicio() {
+		float precio = gestorBD.precioServicio(1);
+		assertEquals(20.5F, precio);
+	}
+	
+	public void test_comprobarAdministrador() throws SQLException {
+		assertTrue(gestorBD.comprobarAdministrador("alberto"));
+		assertTrue(gestorBD.comprobarAdministrador("gorka"));
+		
+		assertFalse(gestorBD.comprobarAdministrador("jon"));
+		assertFalse(gestorBD.comprobarAdministrador("ander"));
 	}
 }
