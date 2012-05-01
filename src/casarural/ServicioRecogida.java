@@ -117,7 +117,7 @@ public class ServicioRecogida extends JFrame {
 		textHora = new JFormattedTextField(NumberFormat.getInstance());
 		textHora.setText("23");
 		textHora.setBounds(186, 470, 50, 20);
-		textHora.setValue(new Integer(23));
+		textHora.setValue(new Long(23));
 		contentPane.add(textHora);
 		textHora.setColumns(10);
 		
@@ -130,7 +130,7 @@ public class ServicioRecogida extends JFrame {
 		contentPane.add(label);
 		
 		textMin = new JFormattedTextField(NumberFormat.getInstance());
-		textMin.setValue(new Integer(59));
+		textMin.setValue(new Long(59));
 		textMin.setBounds(257, 470, 50, 20);
 		contentPane.add(textMin);
 		textMin.setColumns(10);
@@ -170,14 +170,14 @@ public class ServicioRecogida extends JFrame {
 		servicio.setPrecio(((Long)precioTextField.getValue()).floatValue());
 		servicio.setNumRecogida(((Recogida)recogidasComboBox.getSelectedItem()).getNumRecogida());
 		servicio.setNumRecorrido(((Recorrido)recorridosComboBox.getSelectedItem()).getNumRecorrido());
-		if(((Integer)textHora.getValue()).intValue() < 0 || ((Integer)textHora.getValue()).intValue() > 23 
-				|| ((Integer)textMin.getValue()).intValue() < 0 || ((Integer)textMin.getValue()).intValue() > 59)
+		if(((Long)textHora.getValue()).longValue() < 0 || ((Long)textHora.getValue()).longValue() > 23 
+				|| ((Long)textMin.getValue()).longValue() < 0 || ((Long)textMin.getValue()).longValue() > 59)
 		{
 			lblError.setText("Formato erroneo: Hora(0..23) Minutos(0..59");
 		}
 		else
 		{
-			servicio.setHora(java.sql.Time.valueOf(((Integer)textHora.getValue()).toString() + ":" + ((Integer)textMin.getValue()).toString() + ":00"));
+			servicio.setHora(java.sql.Time.valueOf(((Long)textHora.getValue()).toString() + ":" + ((Long)textMin.getValue()).toString() + ":00"));
 			GestorServicio gServicio = GestorServicio.getInstance();
 
 			boolean result = gServicio.crearServicio(servicio);
