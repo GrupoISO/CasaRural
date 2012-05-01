@@ -52,17 +52,12 @@ public class GestorRecorridoTest extends TestCase {
 	 * 
 	 */
 	public void testAsignarRecorrido() {
-		Casa miCasa = new Casa();
-		miCasa.setNumCasa(1);
-		miCasa.setPropietario("JoxeMari");
-		miCasa.setNumDormitorios(3);
-		miCasa.setDescripcion("Casa en Gipuzkoa");
-		miCasa.setNumCocinas(2);
-		miCasa.setNumPlazasGaraje(0);
-		miCasa.setPoblacion("Donostia");
+		Integer numCasa1 = new Integer(1);
+		Integer numCasa2 = new Integer(2);
 		
-		List<Casa> listaDeCasas = new ArrayList<Casa>();
-		listaDeCasas.add(miCasa);
+		List<Integer> listaDeCasas = new ArrayList<Integer>();
+		listaDeCasas.add(numCasa1);
+		listaDeCasas.add(numCasa2);
 		
 		assertTrue(gr.asignarRecorrido(listaDeCasas));
 	}

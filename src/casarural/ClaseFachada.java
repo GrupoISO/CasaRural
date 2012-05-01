@@ -270,7 +270,7 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	 * @param Una lista de Casas Rurales
 	 * @return confirmacion cierto/falso
 	 */
-	public boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException {
+	public boolean asignarRecorrido(List<Integer> listaDeCasas) throws RemoteException {
 		return elGestorRecorrido.asignarRecorrido(listaDeCasas);
 	}
 	

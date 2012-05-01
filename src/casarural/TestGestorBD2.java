@@ -82,16 +82,9 @@ public class TestGestorBD2 extends TestCase {
 	 * Prueba la función 'insertarRecorrido' en una situación normal
 	 */
 	public void test_insertarRecorrido_lleno() {
-		List<Casa> casas = new ArrayList<Casa>();
-		Casa ca;
-		
-		ca = new Casa();
-		ca.setNumCasa(2);
-		casas.add(ca);
-		
-		ca = new Casa();
-		ca.setNumCasa(3);
-		casas.add(ca);
+		List<Integer> casas = new ArrayList<Integer>();
+		casas.add(2);
+		casas.add(3);
 		
 		try {
 			assertTrue(gestorBD.insertarRecorrido(casas) > 4);
@@ -105,7 +98,7 @@ public class TestGestorBD2 extends TestCase {
 	 */
 	public void test_insertarRecorrido_vacio() {
 		try {
-			assertEquals(-1, gestorBD.insertarRecorrido(new ArrayList<Casa>()));
+			assertEquals(-1, gestorBD.insertarRecorrido(new ArrayList<Integer>()));
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}

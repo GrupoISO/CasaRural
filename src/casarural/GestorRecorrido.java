@@ -43,10 +43,10 @@ public class GestorRecorrido {
 	 * @param Una lista de Casas Rurales
 	 * @return confirmacion cierto/falso
 	 */
-	public boolean asignarRecorrido(List<Casa> listaDeCasas){
+	public boolean asignarRecorrido(List<Integer> seleccionados){
 		int estado = -1;
 		try{
-			estado = gbd.insertarRecorrido(listaDeCasas);
+			estado = gbd.insertarRecorrido(seleccionados);
 		}catch(Exception e){
 			System.out.println("Error asignando recorrido:" + e.getMessage());
 		}

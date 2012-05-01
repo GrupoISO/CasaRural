@@ -5,11 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
@@ -62,6 +64,7 @@ public class IURecorrido extends JFrame {
 		JButton btnCrearRecorrido = new JButton("Crear Recorrido");
 		btnCrearRecorrido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				realmenteCrearRecorrido();
 			}
 		});
 		btnCrearRecorrido.setBounds(52, 11, 138, 23);
@@ -109,21 +112,28 @@ public class IURecorrido extends JFrame {
 		ComprobarAdministrador iuComprobarAdminstrador = new ComprobarAdministrador();
 		iuComprobarAdminstrador.comprobar(new Runnable() {
 			public void run() {
-				realmenteCrearRecorrido();
+				IURecorrido.this.setVisible(true);
 			}
 		});
 	}
 	
 	private void realmenteCrearRecorrido() {
-//		GestorServicio gServicio = GestorServicio.getInstance();
-//		GestorRecorrido gRecorrido = GestorRecorrido.getInstance();
-
-//		List<Recorrido> recorridos = gRecorrido.getRecorridos();
-//		List<Recogida> recogidas = gServicio.getRecogidas();
 		
-//		recorridosComboBox.setModel(new DefaultComboBoxModel(recorridos.toArray()));
-//		recogidasComboBox.setModel(new DefaultComboBoxModel(recogidas.toArray()));
+		List<Integer> seleccionados = new ArrayList<Integer>();
 		
-		this.setVisible(true);
+		for (int i=0;i<table.getModel().getRowCount();i++) {
+			if ((Boolean)table.getModel().getValueAt(i, 3)) {
+				seleccionados.add((Integer)table.getModel().getValueAt(i, 0));
+			}
+		}
+		
+		boolean result = gRecorrido.asignarRecorrido(seleccionados);
+		if (result) {
+			JOptionPane.showMessageDialog(this, "El recorrido se ha insertado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+			
+			this.dispose();
+		} else {
+			JOptionPane.showMessageDialog(this, "Ha habido un error al insertar el recorrido", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

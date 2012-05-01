@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CrearRecorridoBean {
 	
 	InterfazFachada logNeg;
-	private List<Casa> listaDeCasasSeleccionadas = new ArrayList<Casa>();
+	private List<Integer> listaDeCasasSeleccionadas = new ArrayList<Integer>();
 	private int numCasa;
 	
 	/**Constructor de la clase CrearRecorridoBean
@@ -42,7 +42,7 @@ public class CrearRecorridoBean {
 	 * 
 	 * @return lista de casas seleccionadas
 	 */
-	public List<Casa> getlistaDeCasasSeleccionadas(){
+	public List<Integer> getlistaDeCasasSeleccionadas(){
 		return listaDeCasasSeleccionadas;
 	}
 	
@@ -67,9 +67,7 @@ public class CrearRecorridoBean {
 	 * @param Un objeto Casa
 	 */
 	public void addCasaSelecionada(){
-		Casa casa = new Casa();
-		casa.setNumCasa(numCasa);
-		listaDeCasasSeleccionadas.add(casa);
+		listaDeCasasSeleccionadas.add(numCasa);
 	}
 	
 	/**Inserta un recorrido en la BD con la lista de Casas

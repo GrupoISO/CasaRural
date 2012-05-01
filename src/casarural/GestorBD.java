@@ -599,12 +599,12 @@ public final class GestorBD {
 	/**
 	 * Inserta un nuevo recorrido
 	 * 
-	 * @param casas lista de casas por las que pasa el nuevo recorrido
+	 * @param seleccionados lista de casas por las que pasa el nuevo recorrido
 	 * @return el identificador asignado al nuevo recorrido, o -1 en caso de no haberlo insertado
 	 */
-	int insertarRecorrido(List<Casa> casas) throws SQLException {
+	int insertarRecorrido(List<Integer> seleccionados) throws SQLException {
 		int recorrido = -1;
-		if (casas.isEmpty()) return recorrido; // si la lista viene vacía, no se inserta nada
+		if (seleccionados.isEmpty()) return recorrido; // si la lista viene vacía, no se inserta nada
 		try {
 			c.setAutoCommit(false);
 			s.executeUpdate("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
@@ -614,8 +614,8 @@ public final class GestorBD {
 			if (recorrido == -1) throw new SQLException("No se sabe cual es el último recorrido insertado.");
 			
 			s.executeUpdate("INSERT INTO Recorrido (NumRecorrido) VALUES (" + recorrido + ")");
-			for(int i=0; i<casas.size(); i++)
-				s.executeUpdate("INSERT INTO CasaRural_Recorrido (Recorrido_NumRecorrido, CasaRural_NumCasa) VALUES (" + recorrido + ", " + casas.get(i).getNumCasa() + ")");
+			for(Integer seleccionado: seleccionados)
+				s.executeUpdate("INSERT INTO CasaRural_Recorrido (Recorrido_NumRecorrido, CasaRural_NumCasa) VALUES (" + recorrido + ", " + seleccionado + ")");
 			c.commit();
 			c.setAutoCommit(true);
 		} catch(SQLException e){

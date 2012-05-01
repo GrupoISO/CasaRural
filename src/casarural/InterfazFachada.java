@@ -249,7 +249,7 @@ public interface InterfazFachada extends Remote {
 	 * @param Una lista de Casas Rurales
 	 * @return confirmacion cierto/falso
 	 */
-	boolean asignarRecorrido(List<Casa> listaDeCasas) throws RemoteException;
+	boolean asignarRecorrido(List<Integer> listaDeCasas) throws RemoteException;
 	
 	
 	/**Obtiene una lista de Servicios asignados a una casa rural en la fecha indicada
