@@ -10,12 +10,19 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 
 public class IURecorrido extends JFrame {
 
+	private static final long serialVersionUID = 6185298852846850116L;
+	
 	private JPanel contentPane;
 	private JTable table;
+	
+	private GestorRecorrido gRecorrido;
+	private List<Casa> listaCasas;
 
 	/**
 	 * Launch the application.
@@ -37,6 +44,9 @@ public class IURecorrido extends JFrame {
 	 * Create the frame.
 	 */
 	public IURecorrido() {
+		
+		gRecorrido = GestorRecorrido.getInstance();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -70,13 +80,13 @@ public class IURecorrido extends JFrame {
 		scrollPane.setBounds(0, 0, 434, 223);
 		contentPane.add(scrollPane);
 		
+		listaCasas = gRecorrido.getCodigoCasas();
+		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
+		DefaultTableModel tModel = new DefaultTableModel(
 			new String[] {
 				"Número Casa", "Propietario", "Población", "Añadir"
-			}
+			}, 0
 		) {
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, String.class, Boolean.class
@@ -84,7 +94,13 @@ public class IURecorrido extends JFrame {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
-		});
+		};
+		
+		for (Casa casa: listaCasas) {
+			tModel.addRow(new Object[]{casa.getNumCasa(), casa.getPropietario(), casa.getPoblacion(), new Boolean(false)});
+		}
+		
+		table.setModel(tModel);
 		table.setFillsViewportHeight(true);
 		scrollPane.setViewportView(table);
 	}
