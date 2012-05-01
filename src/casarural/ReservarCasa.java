@@ -5,8 +5,11 @@ import java.beans.PropertyChangeListener;
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Vector;
+
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -17,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.Color;
 import java.util.GregorianCalendar;
 
@@ -65,6 +70,8 @@ public class ReservarCasa extends JFrame
 	private JButton jButton2 = new JButton();
 	private JButton jButton3 = new JButton();
 	private JComboBox comboBoxServicios = new JComboBox();
+	private JComboBox comboBoxPlazas = new JComboBox();
+	private JCheckBox chckbxServicio = new JCheckBox("Contratar servicio");
 
 	// Codigo para el JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
@@ -76,8 +83,8 @@ public class ReservarCasa extends JFrame
 	private int codigo = 0;
 	private java.sql.Date diaIni = new java.sql.Date(new java.util.Date().getTime());
 	private int numNomches;
-	private boolean selected;
-
+	private boolean selected = false;
+	private boolean existeServicio = false;
 
 	public ReservarCasa()
 	{
@@ -209,9 +216,21 @@ public class ReservarCasa extends JFrame
 				// Telefono de contacto
 				String numTfnoReserva=jTextField4.getText();
 				try {
-					// Llamada al metodo remoto Reservar
-					Reserva reserva=PantallaInicio.interfazfachada.reservar(diaIni, diaFin, numCasa, numTfnoReserva);
-					// Si llega a ejecutarse lo siguiente es que se puede reservar
+					Reserva reserva;
+					if (chckbxServicio.isSelected()) {
+						// Servicio contratado
+						Servicio servicio = (Servicio) comboBoxServicios.getSelectedItem();
+						// Plazas contratadas
+						Integer plazasContratadas = (Integer) comboBoxPlazas.getSelectedItem();
+						
+						reserva=PantallaInicio.interfazfachada.reservar(diaIni, diaFin, numCasa, numTfnoReserva, servicio.getNumServicio(), plazasContratadas);
+
+					}
+					else {
+						// Llamada al metodo remoto Reservar
+						reserva=PantallaInicio.interfazfachada.reservar(diaIni, diaFin, numCasa, numTfnoReserva);
+						// Si llega a ejecutarse lo siguiente es que se puede reservar
+					}
 					ConfirmarReserva confirmarreserva=new ConfirmarReserva(reserva.getNumCasa(), reserva.getPrecioTotal(), reserva.getNumReserva());
 					confirmarreserva.setVisible(true);
 				} catch (RemoteException e1) {
@@ -235,7 +254,7 @@ public class ReservarCasa extends JFrame
 				jButton3_actionPerformed(e);
 			}
 		});
-		jLabel5.setBounds(new Rectangle(15, 431, 430, 20));
+		jLabel5.setBounds(new Rectangle(15, 441, 430, 20));
 		jLabel5.setForeground(Color.red);
 		jCalendar1.setBounds(new Rectangle(155, 50, 235, 145));
 		this.getContentPane().add(jCalendar1, null);
@@ -263,30 +282,49 @@ public class ReservarCasa extends JFrame
 		textInfoServicio.setBackground(UIManager.getColor("Button.background"));
 		textInfoServicio.setEnabled(false);
 		textInfoServicio.setEditable(false);
-		textInfoServicio.setBounds(15, 377, 430, 43);
+		textInfoServicio.setBounds(15, 392, 430, 43);
 		getContentPane().add(textInfoServicio);
 		
 		GestorServicio gServicio = GestorServicio.getInstance();
 		List<Servicio> servicios = gServicio.mostrarServicios(Integer.parseInt(jTextField1.getText()), diaIni);
 		comboBoxServicios.setModel(new DefaultComboBoxModel(servicios.toArray()));
 		
-		JCheckBox chckbxServicio = new JCheckBox("Contratar servicio");
+		
 		chckbxServicio.setBounds(222, 302, 168, 23);
 		getContentPane().add(chckbxServicio);
+		
+		JLabel lblcuntasPlazasDesea = new JLabel("¿Cuántas plazas desea?");
+		lblcuntasPlazasDesea.setBounds(15, 368, 140, 20);
+		getContentPane().add(lblcuntasPlazasDesea);
+		
+		comboBoxPlazas.setEnabled(false);
+		comboBoxPlazas.setBounds(222, 367, 140, 20);
+		getContentPane().add(comboBoxPlazas);
 		
 		chckbxServicio.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent actionEvent) {
 		          AbstractButton abstractButton = (AbstractButton) actionEvent.getSource();
 		          selected = abstractButton.getModel().isSelected();
-		          comboBoxServicios.setEnabled(selected);
+		          comboBoxServicios.setEnabled(selected&&existeServicio);
+		          comboBoxPlazas.setEnabled(selected&&existeServicio);
 		          }
 		      }
 		);
-		jTextField1.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  codigo = Integer.parseInt(jTextField1.getText());
-		    	  actualizarCambios();
-		      }
+		
+		comboBoxServicios.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				Servicio servicio = (Servicio)comboBoxServicios.getSelectedItem();
+				Integer plazasLibres = servicio.getNumPlazas() - servicio.getNumPlazasReservadas();
+				
+				Vector<Integer> listaLibre = new Vector<Integer>(plazasLibres);
+				for(Integer i=1; i<=plazasLibres; i++) {
+					listaLibre.add(i);
+				}
+				
+				comboBoxPlazas.setModel(new DefaultComboBoxModel(listaLibre));
+			}
 		});
 
 		// Codigo para el JCalendar
@@ -317,7 +355,29 @@ public class ReservarCasa extends JFrame
 	private void actualizarCambios(){
 		GestorServicio gServicio = GestorServicio.getInstance();
 		List<Servicio> servicios = gServicio.mostrarServicios(codigo, diaIni);
-		comboBoxServicios.setModel(new DefaultComboBoxModel(servicios.toArray()));
+				
+		if(servicios.isEmpty()) {
+			comboBoxServicios.setModel(new DefaultComboBoxModel(new String[]{"No existen servicios para esta reserva"}));
+			existeServicio = false;
+			comboBoxServicios.setEnabled(selected&&false);
+			comboBoxPlazas.setEnabled(selected&&false);
+		}
+		else {
+			comboBoxServicios.setModel(new DefaultComboBoxModel(servicios.toArray()));
+			existeServicio = true;
+			comboBoxServicios.setEnabled(selected&&true);
+			comboBoxPlazas.setEnabled(selected&&true);
+			
+			Servicio servicio = (Servicio)comboBoxServicios.getSelectedItem();
+			Integer plazasLibres = servicio.getNumPlazas() - servicio.getNumPlazasReservadas();
+			
+			Vector<Integer> listaLibre = new Vector<Integer>(plazasLibres);
+			for(Integer i=1; i<=plazasLibres; i++) {
+				listaLibre.add(i);
+			}
+			
+			comboBoxPlazas.setModel(new DefaultComboBoxModel(listaLibre));
+		}
 	}
 	public static void main (String[] args)
 	{
@@ -333,6 +393,8 @@ public class ReservarCasa extends JFrame
 	{
 		try
 		{
+			codigo = Integer.parseInt(jTextField1.getText());
+			actualizarCambios();
 			new Integer (jTextField1.getText());
 			jLabel5.setText("");
 		}
