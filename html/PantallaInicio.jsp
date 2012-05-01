@@ -30,6 +30,9 @@
     		<br>
     		<br>
     		<a href="CrearRecorrido.jsp">Crear Recorrido</a>
+    		<br>
+    		<br>
+    		<a href="CrearServicio.jsp">Crear Servicio Recogida</a>
     	</p>
     </div>
   </body>

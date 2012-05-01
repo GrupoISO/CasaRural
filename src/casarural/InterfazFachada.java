@@ -4,6 +4,7 @@ import java.rmi.*;
 import java.util.List;
 import java.util.Vector;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /** @author ISO */
 public interface InterfazFachada extends Remote {
@@ -158,6 +159,17 @@ public interface InterfazFachada extends Remote {
 	Reserva reservar(java.sql.Date diaIni, java.sql.Date diaFin, int numCasa,
 			String numTfnoReserva) throws RemoteException,
 			NoSePuedeReservarException;
+	
+	/**
+	 * Realiza la reserva
+	 * 
+	 * @param Dia
+	 *            inicio, dia fin, numero de casa, telefono, numero de servicio, numero de plazas
+	 * @return la reserva
+	 */
+	Reserva reservar(java.sql.Date diaIni, java.sql.Date diaFin, int numCasa,
+			String numTfnoReserva, int idServicio, int plazas) throws RemoteException,
+			NoSePuedeReservarException;
 
 	/**
 	 * Obtener el numero de cuenta corriente a partir de una casa
@@ -246,4 +258,36 @@ public interface InterfazFachada extends Remote {
 	 * @return listaDeServicios asociados a una casa rural
 	 */
 	List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException;
+	
+	
+	/**Crea una reserva y asigna un servicio a la misma
+	 *
+	 * @param 
+	 * @param idServicio Identificador del servicio que se asignara a la reserva
+	 * @param numPlazas Numero de plazas que se quiere reservar
+	 * @return
+	 */
+	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws RemoteException, NoSePuedeReservarException;
+	
+	
+	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
+	 * @param ninguno
+	 * @return Una lista de recorridos
+	 */
+	public List<Recorrido> getRecorridos() throws RemoteException;
+	
+	
+	/**Obtiene una lista de las recogidas actuales
+	 * @param ninguno
+	 * @return Una lista de recogidas
+	 */
+	public List<Recogida> getRecogidas() throws RemoteException;
+	
+	
+	/**Crea un Servicio asignandolo a un recorrido
+	 * 
+	 * @param servicio Toma como entrada la clase Servicio
+	 * @return confirmación true/false
+	 */
+	public boolean crearServicio(Servicio servicio) throws RemoteException;
 }

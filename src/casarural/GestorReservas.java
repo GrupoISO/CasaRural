@@ -163,6 +163,83 @@ public final class GestorReservas {
 		return res;
 
 	}
+	
+	/**
+	 * Hace la reserva en los dias que se le facilitan
+	 * 
+	 * @param Dia
+	 *            de Inicio, Dia de Fin, numero de casa, telefono,
+	 *            nÃºmero de servicio de recogida y plazas a reservar
+	 * @return Una reserva
+	 */
+	public Reserva reservar(java.sql.Date diaIni, java.sql.Date diaFin,
+			int numCasa, String numTfnoReserva, int idServicio, int plazas)
+			throws NoSePuedeReservarException {
+
+		// preguntar el vector de las ofertas dentro de las fechas
+		// (diaIni-diaFin)
+		// si no existen catch la exception
+		List<Oferta> ofertas = new ArrayList<Oferta>();
+		OfertasEnMemoriaPrincipal oferts = new OfertasEnMemoriaPrincipal();
+		try {
+			ofertas = gbd.seleccionarReservas(diaIni, diaFin, numCasa);
+		} catch (NoSePuedeReservarException ex) {
+			throw ex;
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+
+		// aï¿½adir todas las ofertas en la memoria principal
+		for (Oferta next: ofertas) {
+			String numOferta = next.getNumOferta();
+			java.sql.Date diaIniOtro = next.getDiaIni();
+			java.sql.Date diaFinOtro = next.getDiaFin();
+			float precio = next.getPrecio();
+			oferts.anadirReserva(diaIniOtro, diaFinOtro, numOferta, precio);
+		}
+
+		// preguntar de volver el vector de la reservaCompleta
+		// sino existe catch la excepcion
+		List<ReservaCompleta> resCompleta = new ArrayList<ReservaCompleta>();
+		try {
+			resCompleta = oferts.obtenerReservaCompleta(diaIni, diaFin);
+		} catch (NoSePuedeReservarException ex) {
+			throw ex;
+		}
+
+		// cï¿½lculo del precio total
+		float precio = 0.0f;
+		List<Oferta> reservasTotales = new ArrayList<Oferta>();
+		for (ReservaCompleta next: resCompleta) {
+			Oferta o = new Oferta();
+			o.setNumOferta(next.getNumOferta());
+			reservasTotales.add(o);
+			precio = precio + next.getPrecio();
+		}
+		precio = precio + gbd.precioServicio(idServicio)*plazas;
+		
+		// generacion del numReserva
+		this.crearNumReserva();
+
+		Integer otro = new Integer(GestorReservas.numReserva);
+		// ejecutar la transaccion
+		try {
+			gbd.transaccionDeReserva(reservasTotales, otro,
+					numTfnoReserva, precio, idServicio, plazas);
+		} catch (Exception e) {
+			;
+		}
+
+		Reserva res = new Reserva(otro.toString(), numCasa, precio);
+		// volver numReserv
+		try {
+			GestorReservas.salvarNumReserva();
+		} catch (Exception e) {
+			;
+		}
+		return res;
+
+	}
 
 	// //NUEVO
 
@@ -183,11 +260,11 @@ public final class GestorReservas {
 	}
 
 	/**
-	 * Anula las reservas y reestablece o anula las ofertas según corresponda
+	 * Anula las reservas y reestablece o anula las ofertas segï¿½n corresponda
 	 * 
 	 * @param reservas
 	 *            , array que contiene las reservas a anular
-	 * @return 0 si anulación correcta,1 si anulación errónea, 2 si hay que
+	 * @return 0 si anulaciï¿½n correcta,1 si anulaciï¿½n errï¿½nea, 2 si hay que
 	 *         devolver dinero
 	 */
 	public int[] anularReservas(String[] reservas) {
@@ -231,7 +308,7 @@ public final class GestorReservas {
 
 	/**
 	 * Devuelve en un nuevo Vector de ofertas aquellas ofertas que ya no se
-	 * deben encontrar disponibles, y deja en el vector pasado como parámetro
+	 * deben encontrar disponibles, y deja en el vector pasado como parï¿½metro
 	 * las ofertas que han de restaurarse
 	 * 
 	 * @param ofertas

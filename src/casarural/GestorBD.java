@@ -640,7 +640,7 @@ public final class GestorBD {
 		List<Servicio> servicios = new ArrayList<Servicio>();
 		String consulta = "SELECT S.NumServicio, DATE(S.Fecha) AS Fecha, TIME(S.Fecha) AS Hora, S.NumRecogida, S.NumPlazas, S.Precio, S.NumPlazasReservadas, S.NumRecorrido, R.Tipo, R.Direccion, R.Nombre "
 				+ "FROM (Servicio AS S INNER JOIN CasaRural_Recorrido AS C ON S.NumRecorrido = C.Recorrido_NumRecorrido) INNER JOIN Recogida as R ON S.NumRecogida = R.NumRecogida "
-				+ "WHERE C.CasaRural_NumCasa = " + codCasa + " AND DATE(S.Fecha) = \"" + fecha + "\"";
+				+ "WHERE C.CasaRural_NumCasa = " + codCasa + " AND DATE(S.Fecha) = \"" + fecha + "\" AND S.NumPlazasreservadas < S.NumPlazas";
 		ResultSet rs = s.executeQuery(consulta);
 		while (rs.next()) {
 			Servicio serv = new Servicio();
@@ -774,5 +774,22 @@ public final class GestorBD {
 		int result = prstd.executeUpdate();
 		
 		return result == 1;
+	}
+	
+	/**
+	 * Obtiene el precio de una plaza en el servicio de recogida que se le indique por parámetro
+	 * @param numServicio número identificador del servicio de recogida
+	 * @return el precio asociado a una plaza en dicho servicio de recogida
+	 */
+	public float precioServicio(int numServicio) {
+		float precio = 0.0f;
+		try {
+			String consulta = "SELECT Precio FROM Servicio WHERE NumServicio = " + numServicio;
+			ResultSet rs = s.executeQuery(consulta);
+			if (rs.next()) precio = rs.getFloat(1);
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return precio;
 	}
 }

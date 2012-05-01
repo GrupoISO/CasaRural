@@ -9,9 +9,9 @@
 	<title>Recorrido</title>
 	<jsp:useBean id="crearRecorridoBean" scope="request" class="casarural.CrearRecorridoBean"/>
     <link rel="stylesheet" href="css/base.css" type="text/css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/skeleton.css" type="text/css">
+    <link rel="stylesheet" href="css/tables.css" type="text/css">
 </head>
 <body>
 	<div class="container">
@@ -28,7 +28,7 @@
 							<th>Número Casa</th>
 							<th>Propietario</th>
 							<th>Población</th>
-							<th><b>Añadir</b></th>
+							<th><strong>Añadir</strong></th>
 						</tr>
 					</thead>
 					<tbody>

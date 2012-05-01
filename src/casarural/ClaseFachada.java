@@ -140,6 +140,22 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	}
 
 	/**
+	 * Devuelve la reserva vinculada a los parametros de entrada
+	 * 
+	 * @param El
+	 *            codigo de la casa, dia de inicio, dia de fin, el numero de
+	 *            telefono, el servicioi contratado, y las plazas reservadas en dicho servicio
+	 * @return La reserva
+	 */
+	public Reserva reservar(Date diaIni, Date diaFin, int numCasa,
+			String numTfnoReserva, int idServicio, int plazas) throws RemoteException,
+			NoSePuedeReservarException {
+
+		return elGestorReservas.reservar(diaIni, diaFin, numCasa,
+				numTfnoReserva, idServicio, plazas);
+	}
+	
+	/**
 	 * Devuelve el numero de cuenta corriente asociada a la casa
 	 * 
 	 * @param El
@@ -265,5 +281,41 @@ public class ClaseFachada extends UnicastRemoteObject implements
 	 */
 	public List<Servicio> mostrarServicios(int numCasa, java.sql.Date fecha) throws RemoteException {
 		return elGestorServicio.mostrarServicios(numCasa, fecha);
+	}
+	
+	/**Crea una reserva y asigna un servicio a la misma
+	 *
+	 * @param 
+	 * @param idServicio Identificador del servicio que se asignara a la reserva
+	 * @param numPlazas Numero de plazas que se quiere reservar
+	 * @return
+	 */
+	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws RemoteException, NoSePuedeReservarException {
+		return elGestorServicio.transaccionDeReserva(oferta, numTfno, idServicio, numPlazas);
+	}
+	
+	/**Obtiene una lista de la clase Recorrido con los recorridos actuales
+	 * @param ninguno
+	 * @return Una lista de recorridos
+	 */
+	public List<Recorrido> getRecorridos() throws RemoteException {
+		return elGestorRecorrido.getRecorridos();
+	}
+	
+	/**Obtiene una lista de las recogidas actuales
+	 * @param ninguno
+	 * @return Una lista de recogidas
+	 */
+	public List<Recogida> getRecogidas() throws RemoteException {
+		return elGestorServicio.getRecogidas();
+	}
+	
+	/**Crea un Servicio asignandolo a un recorrido
+	 * 
+	 * @param servicio Toma como entrada la clase Servicio
+	 * @return confirmación true/false
+	 */
+	public boolean crearServicio(Servicio servicio) throws RemoteException {
+		return elGestorServicio.crearServicio(servicio);
 	}
 }
