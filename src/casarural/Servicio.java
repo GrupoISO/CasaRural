@@ -3,6 +3,8 @@ import java.io.*;
 
 public class Servicio implements Serializable {
 	
+	private static final long serialVersionUID = 6206521092051802033L;
+	
 	private int numServicio;
 	private java.sql.Date fecha;
 	private java.sql.Time hora;
@@ -193,6 +195,23 @@ public class Servicio implements Serializable {
 	 */
 	public void setNombreRecogida(String nombreRecogida) {
 		this.nombreRecogida = nombreRecogida;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("Servicio ");
+		builder.append(numRecorrido);
+		builder.append(": ");
+		builder.append(fecha);
+		builder.append(" ");
+		builder.append(hora);
+		builder.append(" ");
+		builder.append(precio);
+		builder.append("€");
+		
+		return builder.toString();
 	}
 
 }
