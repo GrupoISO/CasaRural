@@ -210,6 +210,9 @@ public class Servicio implements Serializable {
 		builder.append(" ");
 		builder.append(precio);
 		builder.append("€");
+		builder.append(" ");
+		builder.append(numPlazas-numPlazasReservadas);
+		builder.append(" plazas libres");
 		
 		return builder.toString();
 	}
