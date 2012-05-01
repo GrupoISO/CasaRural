@@ -793,6 +793,12 @@ public final class GestorBD {
 		return precio;
 	}
 
+	/**
+	 * Comprueba que el administrador exista en la base de datos.
+	 * @param codigo El código de administrador a comprobar
+	 * @return verdadero si existe el código, falso en caso contrario
+	 * @throws SQLException Si ha habido algún tipo de error.
+	 */
 	public boolean comprobarAdministrador(String codigo) throws SQLException {
 		PreparedStatement prstd = c.prepareStatement("SELECT Codigo FROM administradores WHERE Codigo = ?");
 		prstd.setString(1, codigo);
