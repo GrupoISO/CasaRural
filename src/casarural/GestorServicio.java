@@ -32,11 +32,11 @@ public class GestorServicio {
 		gbd = GestorBD.getInstance();
 	}
 	
-	/**
-	 * Accede al fichero que contiene el numero de reserva
+	/**Accede al fichero que contiene el numero de reserva
 	 * 
-	 * @param Ninguno
-	 * @return El numero de reserva
+	 * @return El numero de reserva actual
+	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	protected static int cargarNumReserva() throws FileNotFoundException,
 	IOException {
@@ -47,11 +47,11 @@ public class GestorServicio {
 		return numero;
 	}
 
-	/**
-	 * Guarda en el fichero el numero de reserva actual
+	/**Guarda en el fichero el numero de reserva actual
 	 * 
-	 * @param Ninguno
-	 * @return Ninguno
+	 * @param numactual El numero de reserva actual
+	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	protected static void salvarNumReserva(int numactual) throws FileNotFoundException,
 	IOException {
@@ -61,7 +61,7 @@ public class GestorServicio {
 		numero.close();
 	}
 
-	/**Obtiene una lista de las recogidas actuales
+	/**Obtiene una lista compuesta por las recogidas actuales
 	 * @param ninguno
 	 * @return Una lista de recogidas
 	 */
@@ -71,7 +71,7 @@ public class GestorServicio {
 	
 	/**Crea un Servicio asignandolo a un recorrido
 	 * 
-	 * @param servicio Toma como entrada la clase Servicio
+	 * @param servicio Toma como entrada la clase Servicio que se va a crear
 	 * @return confirmación true/false
 	 */
 	public boolean crearServicio(Servicio servicio) {
@@ -99,10 +99,11 @@ public class GestorServicio {
 	
 	/**Crea una reserva y asigna un servicio a la misma
 	 *
-	 * @param 
+	 * @param oferta La oferta que se quiere reservar
+	 * @param numTfno Número de telefono de contacto del usuario
 	 * @param idServicio Identificador del servicio que se asignara a la reserva
 	 * @param numPlazas Numero de plazas que se quiere reservar
-	 * @return
+	 * @return confirmación true/false
 	 */
 	public boolean transaccionDeReserva(Oferta oferta, String numTfno, int idServicio, int numPlazas) throws casarural.NoSePuedeReservarException {
 		// preguntar el vector de las ofertas dentro de las fechas
